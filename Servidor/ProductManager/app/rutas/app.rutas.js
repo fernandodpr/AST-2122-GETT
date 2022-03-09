@@ -1,13 +1,15 @@
-module.exports = (app) => {
-  const App = require("../controllers/app.controller.js");
+module.exports = (ProductManager) => {
+  const ProductManager = require("../controllers/ProductManager.controller.js");
 
-  app.post("/create", App.create);
+  ProductManager.post("/api/product", ProductManager.create);
+  ProductManager.get("/api/product", ProductManager.findAll);
+  ProductManager.delete("/api/product", ProductManager.delete);
 
-  app.get("/get-all", App.findAll);
 
-  app.get("/message/:messageId", App.findOne);
+  ProductManager.get("/api/product/:productID", ProductManager.findOne);
+  ProductManager.post("/api/product/:productID", ProductManager.update);
+  ProductManager.delete("/api/product/:productID", ProductManager.delete);
 
-  app.put("/message/:messageId", App.update);
 
-  app.delete("/message/:messageId", App.delete);
+
 };
