@@ -1,18 +1,32 @@
-const express = require('express');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
-require('dotenv').config();
+mongoose.Promise = global.Promise;
+mongoose.connect(YOUR_MONGODB_URL,
+    {
+      useNewUrlParser: true,
+    }
+  )
+  .then(() => {
+    console.log("Successfully connected to the database");
+  })
+  .catch((err) => {
+    console.log("Could not connect to the database. Error...", err);
+    process.exit();
+  });
 
 const app = express();
-const monk = require('monk');
 
-app.use(helmet());
-app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.get("/status", (req, res) => {
+  res.json({ message: "200 OK", status: "El servidor se esta ejecutando correctamente"} );
 });
+
+let PORT = 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
