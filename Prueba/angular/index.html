@@ -1,0 +1,24 @@
+<!doctype html>
+
+<html ng-app="MainApp">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale = 1">
+        <title>GAME</title>
+        <!-- Cargamos las librerias de angular -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+        <!--Cargamos el js de angular-->
+        <script src="core.js"></script>
+    </head>
+    <body ng-controller = "mainController">
+        <div class="container">
+            <div>
+              <table>
+                <tr>
+                  <td>Titulo</td>
+                  <td>Genero</td>
+                  <td>Lanzamiento</td>
+                  <td>Plataforma</td>
+                  <td>Descripcion</td>
+                </tr>
+                <tr ng-repeat="videojuego in videojuegos" ng-click=""
