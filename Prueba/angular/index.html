@@ -12,6 +12,10 @@
     </head>
     <body ng-controller = "mainController">
         <div class="container">
+            <div ng-prueba>
+                <h1>N. de registros: <span>{{ videojuegos.length }} </span></h1>
+            </div>
+
             <div>
               <table>
                 <tr>
@@ -21,4 +25,34 @@
                   <td>Plataforma</td>
                   <td>Descripcion</td>
                 </tr>
+                <tr ng-repeat = "videojuego in videojuegos" ng-click="selectVideojuego(videojuego)">
+                  <td>{{ videojuego.titulo}} </td>
+                  <td>{{ videojuego.genero}} </td>
+                  <td>{{ videojuego.lanzamiento}} </td>
+                  <td>{{ videojuego.plataforma}} </td>
+                  <td>{{ videojuego.descripcion}} </td>
+                </tr>
+              </table>
+            </div>
+            <div>
+              <form name="myForm">
+                <div>
+                  <input type="text" placeholder="Titulo" ng-model="newVideojuego.titulo" required> <br>
+                  <input type="text" placeholder="Genero" ng-model="newVideojuego.genero" required> <br>
+                  <input type="text" placeholder="Lanzamiento" ng-model="newVideojuego.lanzamiento" required> <br>
+                  <input type="text" placeholder="Plataforma" ng-model="newVideojuego.plataforma" required> <br>
+                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.descripcion" required> <br>
+                </div>
+
+                <!-- Acciones que podemos realizar en el formulario -->
+                <button tupe="submit" ng-click="registrarVideojuego()" ng-disabled = "myForm."
+
+
+
+
+
+
+
+
+
                 <tr ng-repeat="videojuego in videojuegos" ng-click=""
