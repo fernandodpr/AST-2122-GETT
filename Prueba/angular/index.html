@@ -27,10 +27,13 @@
                 </tr>
                 <tr ng-repeat = "videojuego in videojuegos" ng-click="selectVideojuego(videojuego)">
                   <td>{{ videojuego.titulo}} </td>
-                  <td>{{ videojuego.genero}} </td>
+                  <td>{{ videojuego.categoria}} </td>
                   <td>{{ videojuego.lanzamiento}} </td>
                   <td>{{ videojuego.plataforma}} </td>
-                  <td>{{ videojuego.descripcion}} </td>
+                  <td>{{ videojuego.estudio}} </td>
+                  <td>{{ videojuego.stock}} </td>
+                  <td>{{ videojuego.pegi}} </td>
+                  <td>{{ videojuego.precio}} </td>
                 </tr>
               </table>
             </div>
@@ -38,10 +41,13 @@
               <form name="myForm">
                 <div>
                   <input type="text" placeholder="Titulo" ng-model="newVideojuego.titulo" required> <br>
-                  <input type="text" placeholder="Genero" ng-model="newVideojuego.genero" required> <br>
+                  <input type="text" placeholder="Genero" ng-model="newVideojuego.categoria" required> <br>
                   <input type="text" placeholder="Lanzamiento" ng-model="newVideojuego.lanzamiento" required> <br>
                   <input type="text" placeholder="Plataforma" ng-model="newVideojuego.plataforma" required> <br>
-                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.descripcion" required> <br>
+                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.estudio" required> <br>
+                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.stock" required> <br>
+                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.pegi" required> <br>
+                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.precio" required> <br>
                 </div>
 
                 <!-- Acciones que podemos realizar en el formulario -->
