@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-module.exports = mongoose.model('Videojuego', {
+module.exports = mongoose.model('ProductManager', {
   stock: Int,
   titulo: String,
   estudio: String,
