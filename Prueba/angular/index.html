@@ -17,55 +17,48 @@
             </div>
 
             <div>
-              <table>
-                <tr>
-                  <td>Titulo</td>
-                  <td>Genero</td>
-                  <td>Lanzamiento</td>
-                  <td>Plataforma</td>
-                  <td>Descripcion</td>
-                </tr>
-                <tr ng-repeat = "videojuego in videojuegos" ng-click="selectVideojuego(videojuego)">
-                  <td>{{ videojuego.titulo}} </td>
-                  <td>{{ videojuego.categoria}} </td>
-                  <td>{{ videojuego.lanzamiento}} </td>
-                  <td>{{ videojuego.plataforma}} </td>
-                  <td>{{ videojuego.estudio}} </td>
-                  <td>{{ videojuego.stock}} </td>
-                  <td>{{ videojuego.pegi}} </td>
-                  <td>{{ videojuego.precio}} </td>
-                </tr>
-              </table>
+                <table>
+                    <tr>
+                        <td>Titulo</td>
+                        <td>Categoria</td>
+                        <td>Lanzamiento</td>
+                        <td>Plataforma</td>
+                        <td>Estudio</td>
+                        <td>Stock</td>
+                        <td>PEGI</td>
+                        <td>Precio</td>
+                    </tr>
+                    <tr ng-repeat = "videojuego in videojuegos" ng-click="selectVideojuego(videojuego)">
+                        <td>{{ videojuego.titulo}} </td>
+                        <td>{{ videojuego.categoria}} </td>
+                        <td>{{ videojuego.lanzamiento}} </td>
+                        <td>{{ videojuego.plataforma}} </td>
+                        <td>{{ videojuego.estudio}} </td>
+                        <td>{{ videojuego.stock}} </td>
+                        <td>{{ videojuego.pegi}} </td>
+                        <td>{{ videojuego.precio}} </td>
+                    </tr>
+                </table>
             </div>
             <div>
-              <form name="myForm">
-                <div>
-                  <input type="text" placeholder="Titulo" ng-model="newVideojuego.titulo" required> <br>
-                  <input type="text" placeholder="Genero" ng-model="newVideojuego.categoria" required> <br>
-                  <input type="text" placeholder="Lanzamiento" ng-model="newVideojuego.lanzamiento" required> <br>
-                  <input type="text" placeholder="Plataforma" ng-model="newVideojuego.plataforma" required> <br>
-                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.estudio" required> <br>
-                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.stock" required> <br>
-                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.pegi" required> <br>
-                  <input type="text" placeholder="Descripcion" ng-model="newVideojuego.precio" required> <br>
-                </div>
+                <form name="myForm">
+                    <div>
+                        <input type="text" placeholder="Titulo" ng-model="newVideojuego.titulo" required> <br>
+                        <input type="text" placeholder="Genero" ng-model="newVideojuego.categoria" required> <br>
+                        <input type="text" placeholder="Lanzamiento" ng-model="newVideojuego.lanzamiento" required> <br>
+                        <input type="text" placeholder="Plataforma" ng-model="newVideojuego.plataforma" required> <br>
+                        <input type="text" placeholder="Descripcion" ng-model="newVideojuego.estudio" required> <br>
+                        <input type="text" placeholder="Descripcion" ng-model="newVideojuego.stock" required> <br>
+                        <input type="text" placeholder="Descripcion" ng-model="newVideojuego.pegi" required> <br>
+                        <input type="text" placeholder="Descripcion" ng-model="newVideojuego.precio" required> <br>
+                    </div>
 
-                <!-- Acciones que podemos realizar en el formulario -->
-                <button tupe="submit" ng-click="registrarVideojuego()" ng-disabled = "myForm.$invalid || !selected">Registrar</button>
-                <button tupe="submit" ng-click="modificarVideojuego(newVideojuego)" ng-disabled = "!newVideojuego.titulo || !newVideojuego.lanzamiento || !selected">Modificar</button>
-                <button tupe="submit" ng-click="borrarVideojuego(newVideojuego)" ng-disabled = "!newVideojuego.titulo || !newVideojuego.lanzamiento || !selected">Borrar</button>
-              </form>
+                    <!-- Acciones que podemos realizar en el formulario -->
+                    <button tupe="submit" ng-click="registrarVideojuego()" ng-disabled = "myForm.$invalid || !selected">Registrar</button>
+                    <button tupe="submit" ng-click="modificarVideojuego(newVideojuego)" ng-disabled = "!newVideojuego.titulo || !newVideojuego.lanzamiento || !selected">Modificar</button>
+                    <button tupe="submit" ng-click="borrarVideojuego(newVideojuego)" ng-disabled = "!newVideojuego.titulo || !newVideojuego.lanzamiento || !selected">Borrar</button>
+                </form>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                <tr ng-repeat="videojuego in videojuegos" ng-click=""
+        </div>
+    </body>
+</html>
