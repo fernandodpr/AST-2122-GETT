@@ -2,6 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+
+require('./app/rutas/app.rutas.js')(app);
+
 mongoose.Promise = global.Promise;
 mongoose.connect(YOUR_MONGODB_URL,
     {
