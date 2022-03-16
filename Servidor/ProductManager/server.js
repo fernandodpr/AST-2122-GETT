@@ -16,7 +16,7 @@ app.use(express.json());  /* bodyParser.json() is deprecated */
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
 
-const db = require("./app/model");
+const db = require("./app/models");
 db.mongoose
   .connect(db.url, {
     useNewUrlParser: true,

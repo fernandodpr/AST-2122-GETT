@@ -1,108 +1,143 @@
-const ProductManager = require("../model/app.model.js");
+const db = require("../model");
+const Game = db.Game;
 
-// Crear y guardar un nuevo producto
+// Create and Save a new Tutorial
 exports.create = (req, res) => {
-  const message = new ProductManager({
-    message: req.body.message,
+  // Validate request
+  if (!req.body.title) {
+    res.status(400).send({ message: "Content can not be empty!" });
+    return;
+  }
+
+  // Create a Game
+  const tutorial = new Tutorial({
+    title: req.body.title,
+    description: req.body.description,
+    published: req.body.published ? req.body.published : false
   });
-  message
-    .save()
-    .then((data) => {
+
+  // Save Game in the database
+  tutorial
+    .save(tutorial)
+    .then(data => {
       res.send(data);
     })
-    .catch((err) => {
+    .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Message.",
+          err.message || "Some error occurred while creating the Tutorial."
       });
     });
 };
 
-// Get all products of the DB
+// Retrieve all Game from the database.
 exports.findAll = (req, res) => {
-  ProductManager.find()
-    .then((data) => {
+  const title = req.query.title;
+  var condition = title ? { title: { $regex: new RegExp(title), $options: "i" } } : {};
+
+  Tutorial.find(condition)
+    .then(data => {
       res.send(data);
     })
-    .catch((err) => {
+    .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving messages.",
+          err.message || "Some error occurred while retrieving tutorials."
       });
     });
 };
 
-// Find a product with ID
+// Find a single Game with an id
 exports.findOne = (req, res) => {
-  ProductManager.findById(req.params.messageId)
-    .then((data) => {
-      if (!data) {
-        return res.status(404).send({
-          message: "Message not found with id " + req.params.messageId,
-        });
-      }
-      res.send(data);
+  const id = req.params.id;
+
+  Tutorial.findById(id)
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Not found Tutorial with id " + id });
+      else res.send(data);
     })
-    .catch((err) => {
-      if (err.kind === "ObjectId") {
-        return res.status(404).send({
-          message: "Message not found with id " + req.params.messageId,
-        });
-      }
-      return res.status(500).send({
-        message: "Error retrieving message with id " + req.params.messageId,
-      });
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Tutorial with id=" + id });
     });
 };
 
-// Update product by ID
+// Update a Tutorial by the id in the request
 exports.update = (req, res) => {
-  ProductManager.findByIdAndUpdate(
-    req.params.messageId,
-    {
-      message: req.body.message,
-    },
-    { new: true }
-  )
-    .then((data) => {
+  if (!req.body) {
+    return res.status(400).send({
+      message: "Data to update can not be empty!"
+    });
+  }
+
+  const id = req.params.id;
+
+  Tutorial.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+    .then(data => {
       if (!data) {
-        return res.status(404).send({
-          message: "Message not found with id " + req.params.messageId,
+        res.status(404).send({
+          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
         });
-      }
-      res.send(data);
+      } else res.send({ message: "Tutorial was updated successfully." });
     })
-    .catch((err) => {
-      if (err.kind === "ObjectId") {
-        return res.status(404).send({
-          message: "Message not found with id " + req.params.messageId,
-        });
-      }
-      return res.status(500).send({
-        message: "Error updating message with id " + req.params.messageId,
+    .catch(err => {
+      res.status(500).send({
+        message: "Error updating Tutorial with id=" + id
       });
     });
 };
 
-// Delete a product from the database
+// Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
-  ProductManager.findByIdAndRemove(req.params.messageId)
-    .then((data) => {
+  const id = req.params.id;
+
+  Tutorial.findByIdAndRemove(id, { useFindAndModify: false })
+    .then(data => {
       if (!data) {
-        return res.status(404).send({
-          message: "No se ha encontrado ningun producto con la id " + req.params.messageId,
+        res.status(404).send({
+          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+        });
+      } else {
+        res.send({
+          message: "Tutorial was deleted successfully!"
         });
       }
-      res.send({ message: "Producto eliminado satisfactoriamente." });
     })
-    .catch((err) => {
-      if (err.kind === "ObjectId" || err.name === "NotFound") {
-        return res.status(404).send({
-          message: "No se ha encontrado ningun producto con la id" + req.params.messageId,
-        });
-      }
-      return res.status(500).send({
-        message: "No ha sido posible eliminar el producto con ID  " + req.params.messageId,
+    .catch(err => {
+      res.status(500).send({
+        message: "Could not delete Tutorial with id=" + id
+      });
+    });
+};
+
+// Delete all Tutorials from the database.
+exports.deleteAll = (req, res) => {
+  Tutorial.deleteMany({})
+    .then(data => {
+      res.send({
+        message: `${data.deletedCount} Tutorials were deleted successfully!`
+      });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while removing all tutorials."
+      });
+    });
+};
+
+// Find all published Tutorials
+exports.findAllPublished = (req, res) => {
+  Tutorial.find({ published: true })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving tutorials."
       });
     });
 };
