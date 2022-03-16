@@ -1,36 +1,44 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-
-
-require('./app/rutas/app.rutas.js')(app);
-
-mongoose.Promise = global.Promise;
-mongoose.connect(YOUR_MONGODB_URL,
-    {
-      useNewUrlParser: true,
-    }
-  )
-  .then(() => {
-    console.log("Successfully connected to the database");
-  })
-  .catch((err) => {
-    console.log("Could not connect to the database. Error...", err);
-    process.exit();
-  });
+// const bodyParser = require("body-parser"); /* deprecated */
+const cors = require("cors");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
 
-app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
-app.get("/status", (req, res) => {
-  res.json({ message: "200 OK", status: "El servidor se esta ejecutando correctamente"} );
+// parse requests of content-type - application/json
+app.use(express.json());  /* bodyParser.json() is deprecated */
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));   /* bodyParser.urlencoded() is deprecated */
+
+const db = require("./app/model");
+db.mongoose
+  .connect(db.url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
+  });
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ status: "200 - OK" });
 });
 
-let PORT = 3001;
+require("./app/routes/ProductManager.routes.js")(app);
 
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
+  console.log(`El servidor se ejecuta en el puerto: ${PORT}.`);
 });
