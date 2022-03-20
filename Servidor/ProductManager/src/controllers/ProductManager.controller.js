@@ -5,14 +5,20 @@ const Product = require("../models/product.model.js")
 ProductManagerCtrl.status = (req, res) => res.send('OK - Vamoh bien');
 
 //Todo por ID
-ProductManagerCtrl.getProduct = (req, res) => {
-    res.send('OK');
+ProductManagerCtrl.getProduct = async (req, res) => {
+    const producto = await Product.findOne({_id: req.params.id})
+    res.send(producto);
+    
 }
-ProductManagerCtrl.deleteProduct = (req, res) => {
-    res.send('OK');
+ProductManagerCtrl.deleteProduct = async (req, res) => {
+    await Product.findOneAndDelete({_id: req.params.id})
+    res.send({message: '200 - OK'})
 }
-ProductManagerCtrl.editProduct = (req, res) => {
-    res.send('OK');
+ProductManagerCtrl.editProduct = async (req, res) => {
+    const producto = await Product.findOne({_id: req.params.id})
+    Product.findOneAndReplace({_id: req.params.id},producto)
+    res.send({message: '200 - OK'})
+
 }
 //Genericos
 ProductManagerCtrl.createProduct = async (req, res) => {

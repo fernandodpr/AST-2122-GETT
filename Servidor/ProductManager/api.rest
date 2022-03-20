@@ -5,7 +5,7 @@ POST http://localhost:4000/api/product
 Content-Type: application/json
 
 {
-    "nombre": "Mario CART",
+    "nombre": "3 Mario CART",
     "stock": 23,
     "categoria": ["Multijugador", "Minijuegos"],
     "precio" : 24.99,
@@ -20,3 +20,24 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:4000/api/product
+###
+GET http://localhost:4000/api/product/62373959fd0a9469a45eb816
+###
+POST http://localhost:4000/api/product/62373959fd0a9469a45eb816
+Content-Type: application/json
+
+{
+    "nombre": "3 Mario CART",
+    "stock": 23,
+    "categoria": ["Multijugador", "Minijuegos"],
+    "precio" : 24.99,
+    "data":{
+        "estudio": "Nintendo",
+        "lanzamiento": "2005-11-24",
+        "pegi": 7,
+        "plataforma": ["wii", "wii U"],
+        "img":  "https://google.es"
+    }
+}
+###
+DELETE http://localhost:4000/api/product/62373959fd0a9469a45eb816

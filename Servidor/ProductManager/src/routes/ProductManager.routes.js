@@ -9,9 +9,9 @@ router.get('/',ProductManagerController.getProducts);
 router.post('/',ProductManagerController.createProduct);
 router.delete('/',ProductManagerController.deleteProducts);
 
-router.get('/:productID"',ProductManagerController.getProduct);
-router.delete('/:productID"',ProductManagerController.deleteProduct);
-router.post('/:productID"',ProductManagerController.editProduct);
+router.get('/:id',ProductManagerController.getProduct);
+router.delete('/:id',ProductManagerController.deleteProduct);
+router.post('/:id',ProductManagerController.editProduct);
 
 
 
