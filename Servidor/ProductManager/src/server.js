@@ -1,4 +1,6 @@
+const db = require('./database.js');
 const app = require('./app');
+
 console.log("Iniciando ejecucion de ProductManager-Backend");
 
 
