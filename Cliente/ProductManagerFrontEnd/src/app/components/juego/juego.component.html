@@ -2,7 +2,20 @@
     <div class="col-md-4">
         <div class="card-body">
             <h1>FOLMULARIO</h1>
+                <form action="">
+                    <input type="text" class="form-control" placeholder="Nombre del juego">
+                    <input type="number" class="form-control" placeholder="Precio">
+                    <input type="number" class="form-control" placeholder="Stock">
+                    <input type="text" class="form-control" placeholder="Categorías (Separadas por comas)">
+                    <input type="text" class="form-control" placeholder="Estudio">
+                    <input type="date" class="form-control" placeholder="Lanzamiento">
+                    <input type="number" class="form-control" placeholder="PEGI">
+                    <input type="text" class="form-control" placeholder="Plataformas (Separadas por comas)">
+                    <input type="url" class="form-control" placeholder="URL de la Imagen">      
+                    <button class="btn btn-primary mr-2">Vaciar</button>
+                    <button class="btn btn-secondary ">Guardar</button>
 
+                </form>
         </div>
     </div>
     <div class="col-md-8">
@@ -11,6 +24,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">Acciones</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Stock</th>
@@ -24,6 +38,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let juego of ProductService.juegos" >
+                        <td>
+                            <button type="button" class="btn btn-info">
+                                <i class=material-icons>edit</i>
+                            </button>
+                            <button type="button" class="btn btn-danger">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </td>
                         <td>{{juego.nombre}}</td>
                         <td>{{juego.precio}}</td>
                         <td>{{juego.stock}}</td>
@@ -32,7 +54,7 @@
                         <td>{{juego.lanzamiento}}</td>
                         <td>{{juego.pegi}}</td>
                         <td>{{juego.plataforma}}</td>
-                        <td><img src={{juego.img}} alt="No data" height="40px"></td>
+                        <td><img src={{juego.img}} alt="No data" height="90px"></td>
                     </tr>
                 </tbody>
             </table>
