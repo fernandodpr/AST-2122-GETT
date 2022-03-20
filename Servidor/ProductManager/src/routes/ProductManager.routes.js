@@ -1,5 +1,18 @@
+const {Router} = require('express');
+const router = Router();
+
+
+
+router.get('/status', (req, res) => res.send('OK'));
+
+
+
+module.exports = router;
+
+
+/*
 module.exports = (ProductManager) => {
-  const ProductManager = require("../controllers/ProductManager.controller.js");
+  const ProductManager = require("../../app/controllers/ProductManager.controller.js");
   var router = require("express").Router();
 
   ProductManager.post("/api/product", ProductManager.create);
@@ -14,7 +27,7 @@ module.exports = (ProductManager) => {
 
 
 };
-
+*/
 /*
 module.exports = app => {
   const tutorials = require("../controllers/tutorial.controller.js");

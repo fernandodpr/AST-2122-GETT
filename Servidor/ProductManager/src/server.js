@@ -1,22 +1,6 @@
-var port = 3001;
+const app = require('./app');
+console.log("Iniciando ejecucion de ProductManager-Backend");
 
 
-///////////////////////////////////////////////////////////
-const express = require('express');
-const morgan = require('morgan');
-
-
-
-
-
-//////////////////////////////////////////////////////////////
-console.log("Iniciando ejecuciion de ProductManager-Backend");
-
-const app =express();
-
-app.use(morgan('dev'));
-
-
-
-app.listen(port);
-console.log("Server on port:" , port);
+app.listen(app.get('port'));
+console.log("Server on port:" , app.get('port'));
