@@ -23,7 +23,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <tr *ngFor="let juego of ProductService.juegos" >
+                        <td>{{juego.nombre}}</td>
+                        <td>{{juego.precio}}</td>
+                        <td>{{juego.stock}}</td>
+                        <td>{{juego.categoria}}</td>
+                        <td>{{juego.estudio}}</td>
+                        <td>{{juego.lanzamiento}}</td>
+                        <td>{{juego.pegi}}</td>
+                        <td>{{juego.plataforma}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

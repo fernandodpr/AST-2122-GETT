@@ -8,13 +8,20 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class JuegoComponent implements OnInit {
 
-  constructor(private ProductService: ProductService) { }
+  
+
+  constructor(public ProductService: ProductService) { }
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts(){
     this.ProductService.getProducts().subscribe(
-      res => console.log(res),
+      res => {
+        this.ProductService.juegos = res;
+      },
       err => console.log(err) 
     ) 
   }
-
 }
