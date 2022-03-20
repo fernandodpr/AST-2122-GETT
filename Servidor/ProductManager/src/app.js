@@ -9,6 +9,9 @@ app.set('port', process.env.PMBACKPORT || 4000);
 
 app.use(morgan('dev'));
 
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+
 
 app.use("/api/product",require('./routes/ProductManager.routes.js'));
 
