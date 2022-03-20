@@ -10,5 +10,6 @@ app.set('port', process.env.PMBACKPORT || 4000);
 app.use(morgan('dev'));
 
 
-app.use(require('./routes/ProductManager.routes.js'));
+app.use("/api/product",require('./routes/ProductManager.routes.js'));
+
 module.exports = app;
