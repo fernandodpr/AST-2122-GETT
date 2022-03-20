@@ -1,7 +1,29 @@
 ###
-GET http://localhost:4000/api/product
+GET http://localhost:3001/api/product
 ###
-POST http://localhost:4000/api/product
+POST http://localhost:3001/api/product
+Content-Type: application/json
+
+{
+    "nombre": "44 Mario CART",
+    "stock": 23,
+    "categoria": ["Multijugador", "Minijuegos"],
+    "precio" : 24.99,
+    "estudio": "Nintendo",
+    "lanzamiento": "2005-11-24",
+    "pegi": 7,
+    "plataforma": ["wii", "wii U"],
+    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+    
+
+}
+
+###
+DELETE http://localhost:3001/api/product
+###
+GET http://localhost:3001/api/product/62373959fd0a9469a45eb816
+###
+POST http://localhost:3001/api/product/62373bb1b4cb836ed0b40970
 Content-Type: application/json
 
 {
@@ -9,35 +31,12 @@ Content-Type: application/json
     "stock": 23,
     "categoria": ["Multijugador", "Minijuegos"],
     "precio" : 24.99,
-    "data":{
-        "estudio": "Nintendo",
-        "lanzamiento": "2005-11-24",
-        "pegi": 7,
-        "plataforma": ["wii", "wii U"],
-        "img":  "https://google.es"
-    }
-}
-
-###
-DELETE http://localhost:4000/api/product
-###
-GET http://localhost:4000/api/product/62373959fd0a9469a45eb816
-###
-POST http://localhost:4000/api/product/62373bb1b4cb836ed0b40970
-Content-Type: application/json
-
-{
-    "nombre": "33 Mario CART",
-    "stock": 23,
-    "categoria": ["Multijugador", "Minijuegos"],
-    "precio" : 24.99,
-    "data":{
-        "estudio": "Nintendo",
-        "lanzamiento": "2005-11-24",
-        "pegi": 7,
-        "plataforma": ["wii", "wii U"],
-        "img":  "https://google.es"
+    "estudio": "Nintendo",
+    "lanzamiento": "2005-11-24",
+    "pegi": 7,
+    "plataforma": ["wii", "wii U"],
+   
     }
 }
 ###
-DELETE http://localhost:4000/api/product/62373b16aebd116d866a186f
+DELETE http://localhost:3001/api/product/62373b16aebd116d866a186f
