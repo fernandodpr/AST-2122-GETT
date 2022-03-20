@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-8">
         <div class="card-body">
-            <h1>FOLMULARIO</h1>
+            <h1>Data</h1>
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -17,7 +17,7 @@
                         <th scope="col">Categorías</th>
                         <th scope="col">Estudio</th>
                         <th scope="col">Lanzamiento</th>
-                        <th scope="col">Pegi</th>
+                        <th scope="col">PEGI</th>
                         <th scope="col">Plataforma</th>
                         <th scope="col">Imagen</th>
                     </tr>
@@ -32,6 +32,7 @@
                         <td>{{juego.lanzamiento}}</td>
                         <td>{{juego.pegi}}</td>
                         <td>{{juego.plataforma}}</td>
+                        <td><img src={{juego.img}} alt="No data" height="40px"></td>
                     </tr>
                 </tbody>
             </table>
