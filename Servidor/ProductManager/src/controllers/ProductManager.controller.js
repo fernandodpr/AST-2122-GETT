@@ -15,8 +15,7 @@ ProductManagerCtrl.deleteProduct = async (req, res) => {
     res.send({message: '200 - OK'})
 }
 ProductManagerCtrl.editProduct = async (req, res) => {
-    const producto = await Product.findOne({_id: req.params.id})
-    Product.findOneAndReplace({_id: req.params.id},producto)
+    await Product.findOneAndUpdate({_id: req.params.id},req.body)
     res.send({message: '200 - OK'})
 
 }
@@ -35,9 +34,5 @@ ProductManagerCtrl.deleteProducts = async (req, res) => {
     await Product.deleteMany();
     res.send('OK');
 }
-
-
-
-
 
 module.exports = ProductManagerCtrl;
