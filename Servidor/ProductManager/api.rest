@@ -5,7 +5,7 @@ POST http://localhost:3001/api/product
 Content-Type: application/json
 
 {
-    "nombre": "44 Mario CART",
+    "nombre": "44 Mario KART",
     "stock": 23,
     "categoria": ["Multijugador", "Minijuegos"],
     "precio" : 24.99,
@@ -27,7 +27,7 @@ POST http://localhost:3001/api/product/62373bb1b4cb836ed0b40970
 Content-Type: application/json
 
 {
-    "nombre": "33 Mario CART",
+    "nombre": "33 Mario KART",
     "stock": 23,
     "categoria": ["Multijugador", "Minijuegos"],
     "precio" : 24.99,
