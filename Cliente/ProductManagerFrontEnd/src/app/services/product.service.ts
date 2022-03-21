@@ -10,6 +10,7 @@ export class ProductService {
   constructor(private http: HttpClient){}
   URL_API = 'http://localhost:3001/api/product'
   
+  selectedGame: Game;
   juegos: Game[] = [];
 
 

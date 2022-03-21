@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: 'app-juego',
@@ -23,5 +24,10 @@ export class JuegoComponent implements OnInit {
       },
       err => console.log(err) 
     ) 
+  }
+
+  addGame(form: NgForm){
+    console.log("A");
+    console.log(form.value);
   }
 }
