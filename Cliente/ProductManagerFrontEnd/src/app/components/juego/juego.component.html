@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card-body">
-            <h1>FOLMULARIO</h1>
+            <h1>FORMULARIO</h1>
                 <form #gameForm="ngForm" (ngSubmit)="addGame(gameForm)">
                     <div class="form-group">
-                        <input name="nombre" type="text" class="form-control" placeholder="Nombre del juego" [(ngModel)]="ProductService.selectedGame.nombre">
+                    <!---  <input name="nombre" type="text" class="form-control" placeholder="Nombre del juego" [(ngModel)]="ProductService.selectedGame.nombre">-->
                     </div>
                     <input name="precio" type="number" class="form-control" placeholder="Precio">
                     <input name="stock" type="number" class="form-control" placeholder="Stock">
