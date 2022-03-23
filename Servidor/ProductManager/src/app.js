@@ -14,6 +14,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 
-app.use("/api/product",require('./routes/ProductManager.routes.js'));
+app.use("/api",require('./routes/ProductManager.routes.js'));
 
 module.exports = app;

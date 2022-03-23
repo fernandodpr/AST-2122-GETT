@@ -35,4 +35,9 @@ ProductManagerCtrl.deleteProducts = async (req, res) => {
     res.send('OK');
 }
 
+ProductManagerCtrl.getCategory = async (req,res) =>{
+    const producto = await Product.find({categoria: req.params.name})
+    res.send(producto);
+}
+
 module.exports = ProductManagerCtrl;

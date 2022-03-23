@@ -5,9 +5,9 @@ POST http://localhost:3001/api/product
 Content-Type: application/json
 
 {
-    "nombre": "44 Mario KART",
+    "nombre": "TEST Mario KART",
     "stock": 23,
-    "categoria": ["Multijugador", "Minijuegos"],
+    "categoria": ["test", "Minijuegos"],
     "precio" : 24.99,
     "estudio": "Nintendo",
     "lanzamiento": "2005-11-24",
@@ -37,3 +37,7 @@ Content-Type: application/json
 }
 ###
 DELETE http://localhost:3001/api/product/62373b16aebd116d866a186f
+
+###
+GET http://localhost:3001/api/category/test
+###
