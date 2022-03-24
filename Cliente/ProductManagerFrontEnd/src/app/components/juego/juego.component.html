@@ -1,65 +1,124 @@
 <div class="row">
-    <div class="col-md-4">
-        <div class="card-body">
-            <h1>FORMULARIO</h1>
-                <form #gameForm="ngForm" (ngSubmit)="addGame(gameForm)">
-                    <div class="form-group">
-                    <!---  <input name="nombre" type="text" class="form-control" placeholder="Nombre del juego" [(ngModel)]="ProductService.selectedGame.nombre">-->
-                    </div>
-                    <input name="precio" type="number" class="form-control" placeholder="Precio">
-                    <input name="stock" type="number" class="form-control" placeholder="Stock">
-                    <input name="cetegoria" type="text" class="form-control" placeholder="Categorías (Separadas por comas)">
-                    <input name="estudio" type="text" class="form-control" placeholder="Estudio">
-                    <input name="lanzamiento" type="date" class="form-control" placeholder="Lanzamiento">
-                    <input name="pegi" type="number" class="form-control" placeholder="PEGI">
-                    <input name="plataformas" type="text" class="form-control" placeholder="Plataformas (Separadas por comas)">
-                    <input name="url" type="url" class="form-control" placeholder="URL de la Imagen">      
-                    <button class="btn btn-primary mr-2">Vaciar</button>
-                    <button class="btn btn-secondary ">Guardar</button>
-
-                </form>
-        </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h1>FORMULARIO</h1>
+        <form #gameForm="ngForm" (ngSubmit)="addGame(gameForm)">
+          <input type="hidden" name="_id" [(ngModel)] = "ProductService.selectedGame._id">
+          <div class="form-group">
+          <!---  <input name="nombre" type="text" class="form-control" placeholder="Nombre del juego" [(ngModel)]="ProductService.selectedGame.nombre">-->
+          </div>
+          <input
+            name="nombre"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Nombre"
+            [(ngModel)]="ProductService.selectedGame.nombre"
+          />
+          <input
+            name="precio"
+            type="number"
+            class="form-control mb-2"
+            placeholder="Precio"
+            [(ngModel)]="ProductService.selectedGame.precio"
+          />
+          <input
+            name="stock"
+            type="number"
+            class="form-control mb-2"
+            placeholder="Stock"
+            [(ngModel)]="ProductService.selectedGame.stock"
+          />
+          <input
+            name="categoria"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Categorías (Separadas por comas)"
+            [(ngModel)]="ProductService.selectedGame.categoria"
+          />
+          <input
+            name="estudio"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Estudio"
+            [(ngModel)]="ProductService.selectedGame.estudio"
+          />
+          <input
+            name="lanzamiento"
+            type="date"
+            class="form-control mb-2"
+            placeholder="Lanzamiento"
+            [(ngModel)]="ProductService.selectedGame.lanzamiento"
+          />
+          <input
+            name="pegi"
+            type="number"
+            class="form-control mb-2"
+            placeholder="PEGI"
+            [(ngModel)]="ProductService.selectedGame.pegi"
+          />
+          <input
+            name="plataforma"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Plataformas (Separadas por comas)"
+            [(ngModel)]="ProductService.selectedGame.plataforma"
+          />
+          <input
+            name="img"
+            type="url"
+            class="form-control mb-2"
+            placeholder="URL de la Imagen"
+            [(ngModel)]="ProductService.selectedGame.img"
+          />
+          <div style="float:right">
+            <button class="btn btn-primary mr-2">Guardar</button>
+            <button class="btn btn-secondary" (click)="resetForm(gameForm)">Limpiar</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="col-md-8">
-        <div class="card-body">
-            <h1>Data</h1>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Acciones</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Categorías</th>
-                        <th scope="col">Estudio</th>
-                        <th scope="col">Lanzamiento</th>
-                        <th scope="col">PEGI</th>
-                        <th scope="col">Plataforma</th>
-                        <th scope="col">Imagen</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let juego of ProductService.juegos" >
-                        <td>
-                            <button type="button" class="btn btn-info">
-                                <i class=material-icons>edit</i>
-                            </button>
-                            <button type="button" class="btn btn-danger">
-                                <i class="material-icons">delete</i>
-                            </button>
-                        </td>
-                        <td>{{juego.nombre}}</td>
-                        <td>{{juego.precio}}</td>
-                        <td>{{juego.stock}}</td>
-                        <td>{{juego.categoria}}</td>
-                        <td>{{juego.estudio}}</td>
-                        <td>{{juego.lanzamiento}}</td>
-                        <td>{{juego.pegi}}</td>
-                        <td>{{juego.plataforma}}</td>
-                        <td><img src={{juego.img}} alt="No data" height="90px"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+      <h1>Data</h1>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Acciones</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Categorías</th>
+            <th scope="col">Estudio</th>
+            <th scope="col">Lanzamiento</th>
+            <th scope="col">PEGI</th>
+            <th scope="col">Plataforma</th>
+            <th scope="col">Imagen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let juego of ProductService.juegos" >
+            <td>
+              <button type="button" class="btn btn-info">
+                <i class="material-icons" (click)="editGame(juego)">edit</i>
+              </button>
+              <button type="button" class="btn btn-danger" (click)="deleteGame(juego._id)">
+                <i class="material-icons">delete</i>
+              </button>
+            </td>
+            <td>{{juego.nombre}}</td>
+            <td>{{juego.precio}}</td>
+            <td>{{juego.stock}}</td>
+            <td>{{juego.categoria}}</td>
+            <td>{{juego.estudio}}</td>
+            <td>{{juego.lanzamiento}}</td>
+            <td>{{juego.pegi}}</td>
+            <td>{{juego.plataforma}}</td>
+            <td><img src={{juego.img}} alt="No data" height="90px"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
