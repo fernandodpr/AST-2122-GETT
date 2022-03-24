@@ -7,6 +7,6 @@ export interface Game{
     lanzamiento: number
     pegi: number
     plataforma: string
-    img: string
-    
+    img: string,
+    _id: string
 }
