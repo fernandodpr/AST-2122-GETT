@@ -16,6 +16,8 @@ export class JuegoComponent implements OnInit {
 
   constructor(public ProductService: ProductService) { }
 
+  filterGame= [];
+
   ngOnInit(): void {
     this.getProducts();
   }

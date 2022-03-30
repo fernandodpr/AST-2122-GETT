@@ -82,6 +82,7 @@
   <div class="col-md-8">
     <div class="card-body">
       <h1>Data</h1>
+      <input type="text" class="form-control mb-2" name="filterGame" placeholder="Buscar..." [(ngModel)]="filterGame"/>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -98,7 +99,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let juego of ProductService.juegos" >
+          <tr *ngFor="let juego of ProductService.juegos | filter:filterGame" >
             <td>
               <button type="button" class="btn btn-info">
                 <i class="material-icons" (click)="editGame(juego)">edit</i>
