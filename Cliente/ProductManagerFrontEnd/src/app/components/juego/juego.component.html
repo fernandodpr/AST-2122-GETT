@@ -82,7 +82,16 @@
   <div class="col-md-8">
     <div class="card-body">
       <h1>Data</h1>
-      <input type="text" class="form-control mb-2" name="filterGame" placeholder="Buscar..." [(ngModel)]="filterGame"/>
+      <div class="mb-2 " style="display: inline-block;">
+        
+        <input type="text" class=" form-control" style="display: inline-block; width: 27%;" name="filterGame" placeholder="Buscar por nombre (sin API)" [(ngModel)]="filterGame"/>
+        <form #filterForm="ngForm" (ngSubmit)="aplyFilter(filterForm)">
+          <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 27%;" name="filterId" placeholder="Get por ID (con API)" />
+          <input type="text" class="form-control"  [(ngModel)]="ProductService.sumidero2" style="display: inline-block;width: 27%;" name="filterCat" placeholder="Get por categoria (con API)" />
+          <button class="btn btn-info" style="display: inline-block;width: 17%;" >Solicitar datos</button>
+        </form>
+        <button class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar filtros</button>
+      </div >
       <table class="table table-hover">
         <thead>
           <tr>

@@ -6,16 +6,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, args: any): any {
-    const resultGame = [];
-    for(const juego of value){
-      console.log("Patata: "+juego._id);
 
-      if(juego._id.indexOf(args) > -1){
-        console.log("patata");
-        resultGame.push(juego);
+      const resultGame = [];
+      for(const juego of value){
+        console.log("Patata: "+juego.nombre);
+
+        if(juego.nombre.indexOf(args) > -1){
+          console.log("patata");
+          resultGame.push(juego);
+        };
       };
-    };
-  return resultGame;
+    return resultGame;
+    
   }
 }
 

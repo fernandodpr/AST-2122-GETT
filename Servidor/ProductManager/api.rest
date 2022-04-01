@@ -19,13 +19,13 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3001/api/product
 ###
-GET http://localhost:3001/api/product/6246b4a96d7ef84829224c62
+GET http://localhost:3001/api/product/6246b4a36d7ef84829224c5e
 ###
-POST http://localhost:3001/api/product/6246b4a96d7ef84829224c62
+POST http://localhost:3001/api/product/6246b49f6d7ef84829224c5c
 Content-Type: application/json
 
 {
-    "nombre": "AA Mario KART",
+    "nombre": "EDITADO 2 Mario KART",
     "stock": 23,
     "categoria": "Minijuegos",
     "precio" : 24.99,

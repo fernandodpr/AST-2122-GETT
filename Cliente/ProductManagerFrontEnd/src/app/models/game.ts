@@ -1,4 +1,5 @@
 export interface Game{
+    _id?: string,
     nombre: string
     stock: number
     categoria: string
@@ -7,6 +8,6 @@ export interface Game{
     lanzamiento: number
     pegi: number
     plataforma: string
-    img: string,
-    _id: string
+    img: string
+    
 }

@@ -12,8 +12,10 @@ import {Game} from '../models/game';
 export class ProductService {
   constructor(private http: HttpClient){}
   URL_API = 'http://localhost:3001/api/product';
+  URL_CATEGORY = 'http://localhost:3001/api/category';
 
   selectedGame: Game = {
+    _id: "",
     nombre: "",
     stock: 0,
     categoria: "",
@@ -23,16 +25,25 @@ export class ProductService {
     pegi: 0,
     plataforma: "",
     img: "",
-    _id: ""
+    
   };
 
   juegos: Game[] = [];
+
+  sumidero: string = "";
+  sumidero2: string = "";
 
   getProducts(){
     return this.http.get<Game[]>(this.URL_API);
   }
 
+  getProduct(id: string){
+
+    return this.http.get<Game>(`${this.URL_API}/${id}`);
+  }
+
   createProduct(game: Game){
+    delete game._id;
     return this.http.post(this.URL_API, game);
   }
 
@@ -42,5 +53,9 @@ export class ProductService {
 
   deleteProduct(_id: string){
     return this.http.delete(`${this.URL_API}/${_id}`);
+  }
+
+  getCategory(categoryname : string){
+    return this.http.get<Game[]>(`${this.URL_CATEGORY}/${categoryname}`);
   }
 }

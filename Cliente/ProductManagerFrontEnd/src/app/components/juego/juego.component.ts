@@ -12,6 +12,7 @@ import {Game} from 'src/app/models/game';
   styleUrls: ['./juego.component.css']
 })
 
+
 export class JuegoComponent implements OnInit {
 
   constructor(public ProductService: ProductService) { }
@@ -41,7 +42,7 @@ export class JuegoComponent implements OnInit {
   addGame(form: NgForm){
     if(form.value._id){
       this.ProductService.updateProduct(form.value).subscribe(
-        (res) => console.log(res),
+        (res) => {this.getProducts(); form.reset();},
         (err) => console.error(err)
       );
     }else {
@@ -70,6 +71,54 @@ export class JuegoComponent implements OnInit {
 
   //Editar los datos del juego desde el formulario
   editGame(game: Game){
-    this.ProductService.selectedGame = game;
+    console.log("Edicion del juego");
+    if(game._id){
+      console.log(this.ProductService.getProduct(game._id));
+      console.log(game);
+
+      this.ProductService.getProduct(game._id).subscribe(
+        res=>{
+
+          this.ProductService.selectedGame=res;
+        },
+        err=>{
+          console.log(err);
+
+        }
+      )
+
+      }
+  }
+  aplyFilter(filters : NgForm){
+    console.log("Aplicando filtros");
+    console.log(filters);
+    console.log(filters.form.value.filterId);
+    console.log(filters.form.value.filterCat);
+    if(filters.form.value.filterId){
+       this.ProductService.getProduct(filters.form.value.filterId).subscribe(
+      res=>{
+        
+        this.ProductService.juegos=[res];
+      },
+      err=>{
+        console.log(err);
+
+      }
+    )
+    }if (filters.form.value.filterCat) {
+      this.ProductService.getCategory(filters.form.value.filterCat).subscribe(
+        res=>{
+          
+          this.ProductService.juegos=res;
+        },
+        err=>{
+          console.log(err);
+  
+        }
+      )
+    } else {
+      
+    }
+
   }
 }
