@@ -70,7 +70,7 @@ export class JuegoComponent implements OnInit {
           this.getProducts();
           console.log("El producto se ha eliminado de la Base de Datos");
         },
-        (err) => console.error(err);
+        (err) => console.error(err)
       );
     }
   }
@@ -81,45 +81,37 @@ export class JuegoComponent implements OnInit {
     if(game._id){
       console.log(this.ProductService.getProduct(game._id));
       console.log(game);
+
       this.ProductService.getProduct(game._id).subscribe(
         res=>{
           this.ProductService.selectedGame=res;
         },
-        err=> console.log(err);
-      )
+        err=> console.log(err)
+      );
     }
   }
-  
+
   aplyFilter(filters : NgForm){
     console.log("Aplicando filtros");
-    console.log(filters);
+    //console.log(filters);
     console.log(filters.form.value.filterId);
-    console.log(filters.form.value.filterCat);
+    //console.log(filters.form.value.filterCat);
     if(filters.form.value.filterId){
-       this.ProductService.getProduct(filters.form.value.filterId).subscribe(
-      res=>{
-
-        this.ProductService.juegos=[res];
-      },
-      err=>{
-        console.log(err);
-
-      }
-    )
-    }if (filters.form.value.filterCat) {
-      this.ProductService.getCategory(filters.form.value.filterCat).subscribe(
+      this.ProductService.getProductbyId(filters.form.value.filterId).subscribe(
         res=>{
-
           this.ProductService.juegos=res;
         },
-        err=>{
-          console.log(err);
-
-        }
-      )
-    } else {
+        err=> console.log(err)
+      );
+    }else if (filters.form.value.filterCat) {
+      this.ProductService.getCategory(filters.form.value.filterCat).subscribe(
+        res=>{
+          this.ProductService.juegos=res;
+        },
+        err=> console.log(err)
+      );
+    }else {
 
     }
-
   }
 }

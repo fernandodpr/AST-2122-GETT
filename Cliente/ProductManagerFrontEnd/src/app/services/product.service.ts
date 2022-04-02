@@ -1,6 +1,7 @@
 /*
   METODOS USADOS DE FORMA INDIRECTA POR LA PAGINA HTML EN JUEGOCOMPONENT
 */
+
 import {Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Game} from '../models/game';
@@ -13,6 +14,7 @@ export class ProductService {
   constructor(private http: HttpClient){}
   URL_API = 'http://localhost:3001/api/product';
   URL_CATEGORY = 'http://localhost:3001/api/category';
+  URL_ID = 'http://localhost:3001/api/_id';
 
   selectedGame: Game = {
     _id: "",
@@ -25,7 +27,7 @@ export class ProductService {
     pegi: 0,
     plataforma: "",
     img: "",
-    
+
   };
 
   juegos: Game[] = [];
@@ -38,8 +40,11 @@ export class ProductService {
   }
 
   getProduct(id: string){
-
     return this.http.get<Game>(`${this.URL_API}/${id}`);
+  }
+
+  getProductbyId(id: string){
+    return this.http.get<Game[]>(`${this.URL_ID}/${id}`);
   }
 
   createProduct(game: Game){

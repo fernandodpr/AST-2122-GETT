@@ -73,7 +73,7 @@
           />
           <div style="float:right">
             <button class="btn btn-primary mr-2">Guardar</button>
-            <button type="button" class="btn btn-secondary" (click)="resetForm(gameForm)">Limpiar</button>
+            <button type="button" class="btn btn-secondary" style="margin-left: 0.5em;" (click)="resetForm(gameForm)">Limpiar</button>
           </div>
         </form>
       </div>
@@ -84,13 +84,13 @@
       <h1>Data</h1>
       <div class="mb-2 " style="display: inline-block;">
 
-        <input type="text" class=" form-control" style="display: inline-block; width: 27%;" name="filterGame" placeholder="Buscar por nombre (sin API)" [(ngModel)]="filterGame"/>
+        <input type="text" class="form-control mb-2" style="display: inline-block; width: 27%;" name="filterGame" placeholder="Buscar por nombre (sin API)" [(ngModel)]="filterGame"/>
         <form #filterForm="ngForm" (ngSubmit)="aplyFilter(filterForm)">
-          <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 27%;" name="filterId" placeholder="Get por ID (con API)" />
-          <input type="text" class="form-control"  [(ngModel)]="ProductService.sumidero2" style="display: inline-block;width: 27%;" name="filterCat" placeholder="Get por categoria (con API)" />
-          <button class="btn btn-info" style="display: inline-block;width: 17%;" >Solicitar datos</button>
+          <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 27%; margin-right: 0.5em;" name="filterId" placeholder="Get por ID (con API)" />
+          <input type="text" class="form-control"  [(ngModel)]="ProductService.sumidero2" style="display: inline-block;width: 27%; margin-right: 0.5em;" name="filterCat" placeholder="Get por categoria (con API)" />
+          <button class="btn btn-info" style="display: inline-block;width: 17%;margin-right: 0.7em;" >Filtrar</button>
+          <button type="button" class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar</button>
         </form>
-        <button class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar filtros</button>
       </div >
       <table class="table table-hover">
         <thead>
@@ -110,7 +110,7 @@
         <tbody>
           <tr *ngFor="let juego of ProductService.juegos | filter:filterGame" >
             <td>
-              <button type="button" (click)="editGame(juego)" class="btn btn-info">
+              <button type="button" (click)="editGame(juego)" class="btn btn-info" style="margin-bottom: 0.2em;">
                 <i class="material-icons" >edit</i>
               </button>
               <button type="button" class="btn btn-danger" (click)="deleteGame(juego._id)">

@@ -8,7 +8,7 @@ ProductManagerCtrl.status = (req, res) => res.send('OK - Vamoh bien');
 ProductManagerCtrl.getProduct = async (req, res) => {
     const producto = await Product.findOne({_id: req.params.id})
     res.send(producto);
-    
+
 }
 ProductManagerCtrl.deleteProduct = async (req, res) => {
     await Product.findOneAndDelete({_id: req.params.id})
@@ -37,6 +37,11 @@ ProductManagerCtrl.deleteProducts = async (req, res) => {
 
 ProductManagerCtrl.getCategory = async (req,res) =>{
     const producto = await Product.find({categoria: req.params.name})
+    res.send(producto);
+}
+
+ProductManagerCtrl.getId = async (req,res) =>{
+    const producto = await Product.find({_id: req.params.id})
     res.send(producto);
 }
 
