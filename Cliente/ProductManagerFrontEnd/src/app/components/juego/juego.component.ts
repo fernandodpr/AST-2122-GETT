@@ -51,14 +51,16 @@ export class JuegoComponent implements OnInit {
       );
     }else {
       console.log(form.value);
-      this.ProductService.createProduct(form.value).subscribe(
-        (res: any) => {
-          this.getProducts();
-          form.reset();
-          console.log("Producto añadido a la Base de Datos");
-        },
-        (err: any) => console.log(err)
-      );
+      if(form.value.nombre !="" && form.value.categoria !="" && form.value.estudio !="" && form.value.plataforma !="" && form.value.img !=""){
+        this.ProductService.createProduct(form.value).subscribe(
+          (res: any) => {
+            this.getProducts();
+            form.reset();
+            console.log("Producto añadido a la Base de Datos");
+          },
+          (err: any) => console.log(err)
+        );
+      }
     }
   }
 
