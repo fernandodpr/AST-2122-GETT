@@ -73,7 +73,7 @@
           />
           <div style="float:right">
             <button class="btn btn-primary mr-2">Guardar</button>
-            <button class="btn btn-secondary" (click)="resetForm(gameForm)">Limpiar</button>
+            <button type="button" class="btn btn-secondary" (click)="resetForm(gameForm)">Limpiar</button>
           </div>
         </form>
       </div>
@@ -83,7 +83,7 @@
     <div class="card-body">
       <h1>Data</h1>
       <div class="mb-2 " style="display: inline-block;">
-        
+
         <input type="text" class=" form-control" style="display: inline-block; width: 27%;" name="filterGame" placeholder="Buscar por nombre (sin API)" [(ngModel)]="filterGame"/>
         <form #filterForm="ngForm" (ngSubmit)="aplyFilter(filterForm)">
           <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 27%;" name="filterId" placeholder="Get por ID (con API)" />

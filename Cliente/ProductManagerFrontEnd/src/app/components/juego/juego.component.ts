@@ -1,6 +1,7 @@
 /*
   CONTIENE LOS METODOS QUE VAN A SER LLAMADOS DESDE LA PAGINA HTML
 */
+
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { NgForm } from "@angular/forms";
@@ -11,7 +12,6 @@ import {Game} from 'src/app/models/game';
   templateUrl: './juego.component.html',
   styleUrls: ['./juego.component.css']
 })
-
 
 export class JuegoComponent implements OnInit {
 
@@ -42,7 +42,11 @@ export class JuegoComponent implements OnInit {
   addGame(form: NgForm){
     if(form.value._id){
       this.ProductService.updateProduct(form.value).subscribe(
-        (res) => {this.getProducts(); form.reset();},
+        (res) => {
+          this.getProducts();
+          form.reset();
+          console.log("La informacion del producto ha sido actualizada");
+        },
         (err) => console.error(err)
       );
     }else {
@@ -51,6 +55,7 @@ export class JuegoComponent implements OnInit {
         (res: any) => {
           this.getProducts();
           form.reset();
+          console.log("Producto añadido a la Base de Datos");
         },
         (err: any) => console.log(err)
       );
@@ -63,8 +68,9 @@ export class JuegoComponent implements OnInit {
       this.ProductService.deleteProduct(id).subscribe(
         (res) => {
           this.getProducts();
-         },
-         (err) => console.error(err)
+          console.log("El producto se ha eliminado de la Base de Datos");
+        },
+        (err) => console.error(err);
       );
     }
   }
@@ -75,20 +81,15 @@ export class JuegoComponent implements OnInit {
     if(game._id){
       console.log(this.ProductService.getProduct(game._id));
       console.log(game);
-
       this.ProductService.getProduct(game._id).subscribe(
         res=>{
-
           this.ProductService.selectedGame=res;
         },
-        err=>{
-          console.log(err);
-
-        }
+        err=> console.log(err);
       )
-
-      }
+    }
   }
+  
   aplyFilter(filters : NgForm){
     console.log("Aplicando filtros");
     console.log(filters);
@@ -97,7 +98,7 @@ export class JuegoComponent implements OnInit {
     if(filters.form.value.filterId){
        this.ProductService.getProduct(filters.form.value.filterId).subscribe(
       res=>{
-        
+
         this.ProductService.juegos=[res];
       },
       err=>{
@@ -108,16 +109,16 @@ export class JuegoComponent implements OnInit {
     }if (filters.form.value.filterCat) {
       this.ProductService.getCategory(filters.form.value.filterCat).subscribe(
         res=>{
-          
+
           this.ProductService.juegos=res;
         },
         err=>{
           console.log(err);
-  
+
         }
       )
     } else {
-      
+
     }
 
   }
