@@ -2,7 +2,7 @@ const ProductManagerCtrl = {}
 
 const Product = require("../models/product.model.js")
 
-ProductManagerCtrl.status = (req, res) => res.send('OK - Vamoh bien');
+ProductManagerCtrl.status = (req, res) => res.send('OK');
 
 //Todo por ID
 ProductManagerCtrl.getProduct = async (req, res) => {
