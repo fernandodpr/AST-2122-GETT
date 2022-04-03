@@ -53,58 +53,58 @@ POST http://localhost:3001/api/product
 Content-Type: application/json
 
 {
-    "nombre": "33 Mario KART",
+    "nombre": "Adventures of Batman & Robin",
     "stock": 23,
-    "categoria": "test",
-    "precio" : 24.99,
-    "estudio": "Nintendo",
-    "lanzamiento": "2005-11-24",
+    "categoria": "Racing",
+    "precio" : 20,
+    "estudio": "Sega",
+    "lanzamiento": "1995-1-4",
     "pegi": 7,
-    "plataforma": "wii",
-    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+    "plataforma": "Sega",
+    "img":  "https://www.gamesdatabase.org/Media/SYSTEM/Sega_CD/Box/Thumb/Thumb_Adventures_of_Batman_-_Robin_-_1995_-_Sega.jpg"
 }
 ###
 POST http://localhost:3001/api/product
 Content-Type: application/json
 
 {
-    "nombre": "33 Mario KART",
-    "stock": 23,
-    "categoria": "test",
-    "precio" : 24.99,
-    "estudio": "Nintendo",
-    "lanzamiento": "2005-11-24",
-    "pegi": 7,
-    "plataforma": "wii",
-    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+    "nombre": "DiRT",
+    "stock": 10,
+    "categoria": "Racing",
+    "precio" : 14.99,
+    "estudio": "Codemasters",
+    "lanzamiento": "2007-5-5",
+    "pegi": 12,
+    "plataforma": "Xbox",
+    "img":  "https://www.gamesdatabase.org/Media/SYSTEM/Valve_Steam/Banner/Thumb/Thumb_DiRT_-_2007_-_Codemasters.jpg"
 }
 ###
 POST http://localhost:3001/api/product
 Content-Type: application/json
 
 {
-    "nombre": "33 Mario KART",
-    "stock": 23,
-    "categoria": "test",
-    "precio" : 24.99,
-    "estudio": "Nintendo",
-    "lanzamiento": "2005-11-24",
-    "pegi": 7,
-    "plataforma": "wii",
-    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+    "nombre": "International Rugby Simulator",
+    "stock": 5,
+    "categoria": "Sports",
+    "precio" : 34.99,
+    "estudio": "Codemasters",
+    "lanzamiento": "1998-11-24",
+    "pegi": 16,
+    "plataforma": "Amstrad CPC",
+    "img":  "https://www.gamesdatabase.org/Media/SYSTEM/Amstrad_CPC/Box/Thumb/Thumb_International_Rugby_Simulator_-_1988_-_Codemasters.jpg"
 }
 ###
 POST http://localhost:3001/api/product
 Content-Type: application/json
 
 {
-    "nombre": "33 Mario KART",
-    "stock": 23,
-    "categoria": "test",
+    "nombre": "Rise of the Argonauts",
+    "stock": 50,
+    "categoria": "Action",
     "precio" : 24.99,
-    "estudio": "Nintendo",
-    "lanzamiento": "2005-11-24",
+    "estudio": "Codemasters",
+    "lanzamiento": "2008-4-24",
     "pegi": 7,
-    "plataforma": "wii",
-    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+    "plataforma": "Xbox 360",
+    "img":  "https://www.gamesdatabase.org/Media/SYSTEM/Microsoft_Xbox_360/Box/Thumb/Thumb_Rise_of_the_Argonauts_-_2008_-_Codemasters.jpg"
 }
