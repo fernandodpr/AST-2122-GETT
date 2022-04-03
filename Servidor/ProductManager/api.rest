@@ -42,3 +42,69 @@ DELETE http://localhost:3001/api/product/62373b16aebd116d866a186f
 GET http://localhost:3001/api/category/test
 ###
 GET http://localhost:3001/api/status
+
+
+
+
+
+
+###
+POST http://localhost:3001/api/product
+Content-Type: application/json
+
+{
+    "nombre": "33 Mario KART",
+    "stock": 23,
+    "categoria": "test",
+    "precio" : 24.99,
+    "estudio": "Nintendo",
+    "lanzamiento": "2005-11-24",
+    "pegi": 7,
+    "plataforma": "wii",
+    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+}
+###
+POST http://localhost:3001/api/product
+Content-Type: application/json
+
+{
+    "nombre": "33 Mario KART",
+    "stock": 23,
+    "categoria": "test",
+    "precio" : 24.99,
+    "estudio": "Nintendo",
+    "lanzamiento": "2005-11-24",
+    "pegi": 7,
+    "plataforma": "wii",
+    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+}
+###
+POST http://localhost:3001/api/product
+Content-Type: application/json
+
+{
+    "nombre": "33 Mario KART",
+    "stock": 23,
+    "categoria": "test",
+    "precio" : 24.99,
+    "estudio": "Nintendo",
+    "lanzamiento": "2005-11-24",
+    "pegi": 7,
+    "plataforma": "wii",
+    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+}
+###
+POST http://localhost:3001/api/product
+Content-Type: application/json
+
+{
+    "nombre": "33 Mario KART",
+    "stock": 23,
+    "categoria": "test",
+    "precio" : 24.99,
+    "estudio": "Nintendo",
+    "lanzamiento": "2005-11-24",
+    "pegi": 7,
+    "plataforma": "wii",
+    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+}
