@@ -97,11 +97,11 @@ export class JuegoComponent implements OnInit {
     console.log("Aplicando filtros");
     //console.log(filters);
     console.log(filters.form.value.filterId);
-    //console.log(filters.form.value.filterCat);
+    console.log(filters.form.value.filterCat);
     if(filters.form.value.filterId){
-      this.ProductService.getProductbyId(filters.form.value.filterId).subscribe(
+      this.ProductService.getProduct(filters.form.value.filterId).subscribe(
         res=>{
-          this.ProductService.juegos=res;
+          this.ProductService.juegos=[res];
         },
         err=> console.log(err)
       );

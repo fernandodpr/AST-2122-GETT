@@ -89,8 +89,8 @@
           <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 27%; margin-right: 0.5em;" name="filterId" placeholder="Get por ID (con API)" />
           <input type="text" class="form-control"  [(ngModel)]="ProductService.sumidero2" style="display: inline-block;width: 27%; margin-right: 0.5em;" name="filterCat" placeholder="Get por categoria (con API)" />
           <button class="btn btn-info" style="display: inline-block;width: 17%;margin-right: 0.7em;" >Filtrar</button>
-          <button type="button" class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar</button>
         </form>
+        <button class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar</button>
       </div >
       <table class="table table-hover">
         <thead>

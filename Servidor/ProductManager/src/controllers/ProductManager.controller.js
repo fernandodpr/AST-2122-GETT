@@ -40,9 +40,6 @@ ProductManagerCtrl.getCategory = async (req,res) =>{
     res.send(producto);
 }
 
-ProductManagerCtrl.getId = async (req,res) =>{
-    const producto = await Product.find({_id: req.params.id})
-    res.send(producto);
-}
+
 
 module.exports = ProductManagerCtrl;

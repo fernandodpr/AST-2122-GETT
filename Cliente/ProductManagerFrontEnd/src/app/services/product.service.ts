@@ -43,10 +43,6 @@ export class ProductService {
     return this.http.get<Game>(`${this.URL_API}/${id}`);
   }
 
-  getProductbyId(id: string){
-    return this.http.get<Game[]>(`${this.URL_ID}/${id}`);
-  }
-
   createProduct(game: Game){
     delete game._id;
     return this.http.post(this.URL_API, game);
