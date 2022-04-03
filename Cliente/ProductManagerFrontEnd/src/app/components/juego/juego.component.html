@@ -8,6 +8,7 @@
           <div class="form-group">
           <!---  <input name="nombre" type="text" class="form-control" placeholder="Nombre del juego" [(ngModel)]="ProductService.selectedGame.nombre">-->
           </div>
+          <p>Nombre:</p>
           <input
             name="nombre"
             type="text"
@@ -15,6 +16,7 @@
             placeholder="Nombre"
             [(ngModel)]="ProductService.selectedGame.nombre"
           />
+          <p>Precio:</p>
           <input
             name="precio"
             type="number"
@@ -22,6 +24,7 @@
             placeholder="Precio"
             [(ngModel)]="ProductService.selectedGame.precio"
           />
+          <p>Stock:</p>
           <input
             name="stock"
             type="number"
@@ -29,13 +32,15 @@
             placeholder="Stock"
             [(ngModel)]="ProductService.selectedGame.stock"
           />
+          <p>Categoria:</p>
           <input
             name="categoria"
             type="text"
             class="form-control mb-2"
-            placeholder="Categorías (Separadas por comas)"
+            placeholder="Categoría"
             [(ngModel)]="ProductService.selectedGame.categoria"
           />
+          <p>Estudio:</p>
           <input
             name="estudio"
             type="text"
@@ -43,6 +48,7 @@
             placeholder="Estudio"
             [(ngModel)]="ProductService.selectedGame.estudio"
           />
+          <p>Fecha lanzamiento:</p>
           <input
             name="lanzamiento"
             type="date"
@@ -50,6 +56,7 @@
             placeholder="Lanzamiento"
             [(ngModel)]="ProductService.selectedGame.lanzamiento"
           />
+          <p>PEGI:</p>
           <input
             name="pegi"
             type="number"
@@ -57,13 +64,15 @@
             placeholder="PEGI"
             [(ngModel)]="ProductService.selectedGame.pegi"
           />
+          <p>Plataforma:</p>
           <input
             name="plataforma"
             type="text"
             class="form-control mb-2"
-            placeholder="Plataformas (Separadas por comas)"
+            placeholder="Plataformas"
             [(ngModel)]="ProductService.selectedGame.plataforma"
           />
+          <p>URL a imagen:</p>
           <input
             name="img"
             type="url"
@@ -83,12 +92,13 @@
     <div class="card-body">
       <h1>Data</h1>
       <div class="mb-2 " style="display: inline-block;">
-
+        <p>Filtros locales de angular:</p>
         <input type="text" class="form-control mb-2" style="display: inline-block; width: 27%;" name="filterGame" placeholder="Buscar por nombre (sin API)" [(ngModel)]="filterGame"/>
-        <form #filterForm="ngForm" (ngSubmit)="aplyFilter(filterForm)">
-          <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 27%; margin-right: 0.5em;" name="filterId" placeholder="Get por ID (con API)" />
-          <input type="text" class="form-control"  [(ngModel)]="ProductService.sumidero2" style="display: inline-block;width: 27%; margin-right: 0.5em;" name="filterCat" placeholder="Get por categoria (con API)" />
-          <button class="btn btn-info" style="display: inline-block;width: 17%;margin-right: 0.7em;" >Filtrar</button>
+        <p>Filtros por llamada API:</p>
+        <form #filterForm="ngForm" style="display: inline-block" (ngSubmit)="aplyFilter(filterForm)">
+          <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 40%; margin-right: 0.5em;" name="filterId" placeholder="Get por ID (con API)" />
+          <input type="text" class="form-control"  [(ngModel)]="ProductService.sumidero2" style="display: inline-block;width: 40%; margin-right: 0.5em;" name="filterCat" placeholder="Get por categoria (con API)" />
+          <button class="btn btn-info" style="display: inline-block;width: 20%;margin-right: 0.7em;" >Filtrar</button>
         </form>
         <button class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar</button>
       </div >
