@@ -1,9 +1,9 @@
 const {Router} = require('express');
 const router = Router();
-const ProductManagerController =  require ('../controllers/SalesManager.controller.js');
+const SalesManagerController =  require ('../controllers/SalesManager.controller.js');
 
 
 //Todas estas rutas llevan delante /api
 
-router.get('/status',ProductManagerController.status);
+router.get('/status',SalesManagerController.status);
 module.exports = router;
