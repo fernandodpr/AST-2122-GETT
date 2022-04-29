@@ -9,7 +9,8 @@ AuthManagerCtrl.getAll = async (req,res) => {
         const users = await User.find()
         res.json(users)
     }catch(error){
-        res.send({message: 'Server Error'});
+	res.status(500)
+	res.send({message: 'Server Error'});
     }
 }
 
@@ -24,6 +25,7 @@ AuthManagerCtrl.create = async (req,res) =>{
         res.send({message: 'Todo bien'});
         
     }catch (error){
+	res.status(500)
         res.send({message: 'Server Error'});
     }
 };
@@ -35,6 +37,7 @@ AuthManagerCtrl.deleteAll = async (req,res) =>{
         res.send({message: '200 - OK'});
 
     }catch (error){
+	res.status(500)
         res.send({message: 'Server Error'});
     }
 
@@ -46,6 +49,7 @@ AuthManagerCtrl.deleteID = async (req,res) =>{
         await User.findOneAndDelete({_id: req.params.id});
         res.send("Makina bro")
     }catch (error){
+	res.status(500)
         res.send({message: 'Server Error'});
     }
 };
@@ -57,6 +61,7 @@ AuthManagerCtrl.getUser = async (req,res) =>{
         const usuario = await User.findOne({_id: req.params.id});
         res.send(usuario);
     }catch (error){
+	res.status(500)
         res.send({message: 'Server Error'});
     }
 };
