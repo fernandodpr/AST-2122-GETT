@@ -22,10 +22,11 @@ DELETE http://localhost:3003/api/user
 
 ###
 DELETE http://localhost:3002/api/order/626bc338f06d24e51fa69205
+Auth: 626bf1645826c0ede61d506d
 Content-Type: application/json
 
 {
-    "auth": "626ba8022a7fc04f5067b9c7"
+    "auth": "626bf1645826c0ede61d506d"
 }
 ###
 GET http://localhost:3003/api/user/626ba7ea2a7fc04f5067b9c4

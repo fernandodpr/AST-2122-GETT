@@ -80,21 +80,30 @@ SalesmanagerCtrl.deleteAllSales = async (req, res) => {
 }
 
 SalesmanagerCtrl.deleteSale = async (req, res) => {
-	const auth = await getRol(req.body.auth);
+	try{
+		const auth = await getRol(req.get('Auth'));
 
-	console.log("Me sigo ejecutando");
-	console.log(auth);
+		var user=JSON.parse(auth);
+		
+		if(user.rol=='Administrador'){
+			res.status(401);
+			throw Error;
 
-
-	if(auth=='Administrador'){
-		console.warn("Estoy en el IF");
-		try{
-			//await Sale.findOneAndDelete({_id: req.params.id});
-			res.send({message: '200 - OK'})
-		}catch(error){
-			res.send({message: 'Server error'})
+		}else if (user.rol=="Cliente"){
+			if (!await Sale.findOneAndDelete({_id: req.params.id})) {
+				res.status(404); 
+				throw Error;
+			}
+			res.send({message: 'El pedido '+ req.params.id +' ha sido eliminado'});
+		} else{
+			res.status(500);
+			throw Error;
 		}
+	}catch(error){
+		res.send({message: 'Server error'})
 	}
+
+	
 
 }
  function getRol(id) {
