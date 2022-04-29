@@ -11,6 +11,7 @@ SalesmanagerCtrl.getProducts = async (req, res) => {
 		const products = await Product.find()
 		res.json(products)
 	}catch(error){
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
@@ -20,6 +21,7 @@ SalesmanagerCtrl.getSales = async (req, res) => {
 		const sales = await Sale.find()
 		res.json(sales)
 	}catch(error){
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
@@ -29,6 +31,7 @@ SalesmanagerCtrl.getSaleID = async (req, res) => {
 		const venta = await Sale.findOne({_id: req.params.id})
 		res.send(venta)
 	}catch(error){
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
@@ -38,6 +41,7 @@ SalesmanagerCtrl.getUser = async (req, res) => {
 		const usuario = await User.findOne({_id: req.params.id})
 		res.send(usuario)
 	}catch(error){
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
@@ -49,6 +53,7 @@ SalesmanagerCtrl.newSale = async (req, res) => {
 		await sale.save()
 		res.send({message: '200 - OK'})
 	}catch(error){
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
@@ -58,7 +63,7 @@ SalesmanagerCtrl.updateSale = async (req, res) => {
 		await Sale.findOneAndUpdate({_id: req.params.id}, req.body)
 		res.send({message: '200 - OK'})
 	}catch(error){
-		console.error(error);
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
@@ -69,6 +74,7 @@ SalesmanagerCtrl.deleteAllSales = async (req, res) => {
 		await Sale.deleteMany();
 		res.send({message: '200 -OK'})
 	}catch(error){
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
@@ -78,6 +84,7 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 		await Sale.findOneAndDelete({_id: req.params.id});
 		res.send({message: '200 - OK'})
 	}catch(error){
+		res.status(500)
 		res.send({message: 'Server error'})
 	}
 }
