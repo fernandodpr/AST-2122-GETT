@@ -1,7 +1,25 @@
 ###
 GET http://localhost:3001/api/product
-###
+###POST POR CLIENTE
 POST http://localhost:3001/api/product
+Auth: 626c14e228e322cb3f35e733
+Content-Type: application/json
+
+{
+    "nombre": "33 Mario KART",
+    "stock": 23,
+    "categoria": "test",
+    "precio" : 24.99,
+    "estudio": "Nintendo",
+    "lanzamiento": "2005-11-24",
+    "pegi": 7,
+    "plataforma": "wii",
+    "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
+}
+
+###POST POR Administrador
+POST http://localhost:3001/api/product
+Auth: 626c14ef28e322cb3f35e735
 Content-Type: application/json
 
 {
@@ -17,11 +35,13 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/product
+DELETE http://localhost:3001/api/product/624d5bf539aeed19bd1c4bdf
+Auth: 626c14e228e322cb3f35e733
 ###
 GET http://localhost:3001/api/product/6246b4a36d7ef84829224c5e
 ###
 POST http://localhost:3001/api/product/6246b49f6d7ef84829224c5c
+Auth: 626c14e228e322cb3f35e733
 Content-Type: application/json
 
 {
