@@ -13,7 +13,7 @@ Content-Type: application/json
 {
     "id_producto": "624d5bfb39aeed19bd1c4be1",
     "id_usuario": "A",
-    "cantidad": 1,
+    "cantidad": 0,
     "comprador": "A",
     "direccion": "A"
 }
@@ -33,6 +33,7 @@ Content-Type: application/json
 
 
 
+###
 GET http://localhost:3002/api/order
 ###
 DELETE http://localhost:3003/api/user
