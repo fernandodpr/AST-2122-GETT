@@ -50,8 +50,20 @@ SalesmanagerCtrl.getUser = async (req, res) => {
 SalesmanagerCtrl.newSale = async (req, res) => {
 	try{
 		const sale = new Sale(req.body)
-		await sale.save()
-		res.send({message: '200 - OK'})
+		const producto = await Product.findOne({_id: sale.id_producto})
+		let cant = sale.cantidad;
+		let cantMax = producto.stock;
+		if(cant <= cantMax){
+			producto.stock = producto.stock - cant;
+			producto.save()
+			console.log(producto.stock);
+			await sale.save()
+			res.send({message: '200 - OK'})
+		}
+		else{
+			res.status(500)
+			res.send({message: 'No hay suficientes productos en stock :('})
+		}
 	}catch(error){
 		res.status(500)
 		res.send({message: 'Server error'})
@@ -82,21 +94,23 @@ SalesmanagerCtrl.deleteAllSales = async (req, res) => {
 SalesmanagerCtrl.deleteSale = async (req, res) => {
 	const auth = await getRol(req.body.auth);
 
-	console.log(auth);
-
-
 	if(auth=='Administrador'){
 		console.warn("Estoy en el IF");
 		try{
-			//await Sale.findOneAndDelete({_id: req.params.id});
+			const compra = await Sale.findOneAndDelete({_id: req.params.id});
+			const producto = await Product.findOne({_id: compra.id_producto});
+			producto.stock = producto.stock + compra.cantidad;
+			producto.save()
 			res.send({message: '200 - OK'})
 		}catch(error){
+			res.status(500)
 			res.send({message: 'Server error'})
 		}
 	}
 
 }
 
+//Funciones
 async function getRol(id) {
 	http.get('http://localhost:3003/api/user/'+id, (resp) => {
 
