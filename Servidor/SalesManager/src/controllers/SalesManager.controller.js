@@ -82,6 +82,7 @@ SalesmanagerCtrl.deleteAllSales = async (req, res) => {
 SalesmanagerCtrl.deleteSale = async (req, res) => {
 	const auth = await getRol(req.body.auth);
 
+	console.log("Me sigo ejecutando");
 	console.log(auth);
 
 
@@ -96,28 +97,35 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 	}
 
 }
+ function getRol(id) {
+	 return new Promise ((res,rej) => {
+		http.get('http://localhost:3003/api/user/'+id, (resp) => {
 
-async function getRol(id) {
-	http.get('http://localhost:3003/api/user/'+id, (resp) => {
+			let data = '';
+			// A chunk of data has been received.
+			resp.on('data', (chunk) => {
+				data += chunk;
+			});
+		
+			 // The whole response has been received. Print out the result.
+			  resp.on('end', () => {
+				res(data);
+			});
+		
+			}).on("error", (err) => {
+				console.log("Error en la petición de rol");
+				rej(0);
+			});
 
-	let data = '';
-	// A chunk of data has been received.
-	resp.on('data', (chunk) => {
-		data += chunk;
-	});
 
- 	// The whole response has been received. Print out the result.
-  	resp.on('end', () => {
-		data=JSON.parse(data);
-		console.log("Tenemos la respuesta");
-		console.warn(data.rol);
-		return data.rol;
-	});
 
-	}).on("error", (err) => {
-		console.log("Error en la petición de rol");
-  		return null;
-	});
+
+
+
+
+
+	 });
+	
 }
 
 
