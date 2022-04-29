@@ -2,7 +2,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-const app =express();
+const app = express();
 //////////////////////////////////////////////////////////////
 //Enviroment variables
 app.set('port', process.env.PMBACKPORT || 3001);
