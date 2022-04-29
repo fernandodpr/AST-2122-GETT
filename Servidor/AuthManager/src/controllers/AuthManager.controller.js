@@ -25,7 +25,7 @@ AuthManagerCtrl.create = async (req,res) =>{
         res.send({message: 'Todo bien'});
         
     }catch (error){
-	res.status(500)
+	    res.status(500)
         res.send({message: 'Server Error'});
     }
 };
@@ -46,7 +46,10 @@ AuthManagerCtrl.deleteID = async (req,res) =>{
     //Eliminar un usuario por ID
 
     try{
-        await User.findOneAndDelete({_id: req.params.id});
+        if ( ! await User.findOneAndDelete({_id: req.params.id})){
+            throw error;
+        }
+       
         res.send("Makina bro")
     }catch (error){
 	res.status(500)
@@ -59,6 +62,7 @@ AuthManagerCtrl.getUser = async (req,res) =>{
 
     try{
         const usuario = await User.findOne({_id: req.params.id});
+        if(!usuario) throw error;
         res.send(usuario);
     }catch (error){
 	res.status(500)

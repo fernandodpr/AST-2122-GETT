@@ -17,12 +17,13 @@ Content-Type: application/json
 
 {
     "rol": "Cliente",
+    "username": "Coco"
 }
 
 ###
 DELETE http://localhost:3003/api/user
 
 ###
-DELETE http://localhost:3003/api/user/626ba7ea2a7fc04f5067b9c4
+DELETE http://localhost:3003/api/user/626bf1645826c0ed61d506f
 ###
-GET http://localhost:3003/api/user/626ba7ea2a7fc04f5067b9c4
+GET http://localhost:3003/api/user/626bf164582c0ede61d506f
