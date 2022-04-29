@@ -5,28 +5,41 @@ GET http://localhost:3002/api/products
 GET http://localhost:3002/api/status
 
 ###
+#Post por cliente
 POST http://localhost:3002/api/order
+Auth: 626c14e228e322cb3f35e733
 Content-Type: application/json
 
 {
-    "id_producto": "A",
+    "id_producto": "624d5bfb39aeed19bd1c4be1",
     "id_usuario": "A",
-    "cantidad": 3,
+    "cantidad": 1,
     "comprador": "A",
     "direccion": "A"
 }
 ###
+#Post por Administrador
+POST http://localhost:3002/api/order
+Auth: 626c14ef28e322cb3f35e735
+Content-Type: application/json
+
+{
+    "id_producto": "624d5bfb39aeed19bd1c4be1",
+    "id_usuario": "A",
+    "cantidad": 1,
+    "comprador": "A",
+    "direccion": "A"
+}
+
+
+
 GET http://localhost:3002/api/order
 ###
 DELETE http://localhost:3003/api/user
 
 ###
-DELETE http://localhost:3002/api/order/626c005a7a5424d775c06aa2
+DELETE http://localhost:3002/api/order/626c005b7a5424d775c06aa4
 Auth: 626bf1645826c0ede61d506d
-Content-Type: application/json
 
-{
-    "auth": "626bf1645826c0ede61d506d"
-}
 ###
-GET http://localhost:3003/api/user/626ba7ea2a7fc04f5067b9c4
+GET http://localhost:3002/api/order/626c005b7a5424d775c06aa4

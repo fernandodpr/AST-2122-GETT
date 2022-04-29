@@ -48,24 +48,48 @@ SalesmanagerCtrl.getUser = async (req, res) => {
 
 //Métodos POST
 SalesmanagerCtrl.newSale = async (req, res) => {
+	res.status(500)
 	try {
-		const sale = new Sale(req.body)
-		const producto = await Product.findOne({ _id: sale.id_producto })
-		let cant = sale.cantidad;
-		let cantMax = producto.stock;
-		if (cant <= cantMax) {
-			producto.stock = producto.stock - cant;
-			producto.save()
-			console.log(producto.stock);
-			await sale.save()
-			res.send({ message: '200 - OK' })
-		}
-		else {
-			res.status(500)
-			res.send({ message: 'No hay suficientes productos en stock :(' })
+		const auth = await getRol(req.get('Auth'));
+	
+		if (auth) var user = JSON.parse(auth);
+
+		res.status(500);
+
+		if (user.rol == 'Administrador') {
+			res.status(401);
+			throw Error;
+
+		} else if (user.rol == "Cliente") {
+
+			const sale = new Sale(req.body);
+		
+			var producto = await Product.findOne({ _id: sale.id_producto });
+			
+			if (!producto){
+				res.status(404);
+				throw Error;
+			}
+			let cant = sale.cantidad;
+			let stock = producto.stock;
+
+			if ((cant <= stock) && (cant>0)) {
+				producto.stock = producto.stock - cant;
+				producto.save()
+				
+				await sale.save();
+				res.status(200)
+				res.send({ message: 'Se ha realizado la compra: '+ sale._id })
+			}
+			else {
+				
+				res.send({ message: 'No hay suficientes productos en stock :(' })
+			}
+		}else {
+			res.status(500);
+			throw Error;
 		}
 	} catch (error) {
-		res.status(500)
 		res.send({ message: 'Server error' })
 	}
 }
