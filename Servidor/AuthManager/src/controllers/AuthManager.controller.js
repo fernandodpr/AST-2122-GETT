@@ -44,7 +44,7 @@ AuthManagerCtrl.deleteID = async (req,res) =>{
 
     try{
         await User.findOneAndDelete({_id: req.params.id});
-        res.send("Makina bro");
+        res.send("Makina bro")
     }catch (error){
         res.send({message: 'Server Error'});
     }

@@ -1,5 +1,5 @@
 const SalesmanagerCtrl = {}
-
+const http = require('http');
 const Product = require("../models/product.model.js")
 const Sale = require("../models/sale.model.js")
 
@@ -65,12 +65,45 @@ SalesmanagerCtrl.deleteAllSales = async (req, res) => {
 }
 
 SalesmanagerCtrl.deleteSale = async (req, res) => {
-	try{
-		await Sale.findOneAndDelete({_id: req.params.id});
-		res.send({message: '200 - OK'})
-	}catch(error){
-		res.send({message: 'Server error'})
+	const auth = await getRol(req.body.auth);
+
+	console.log(auth);
+	
+
+	if(auth=='Administrador'){
+		console.warn("Estoy en el IF");
+		try{
+			//await Sale.findOneAndDelete({_id: req.params.id});
+			res.send({message: '200 - OK'})
+		}catch(error){
+			res.send({message: 'Server error'})
+		}
 	}
+	
 }
+
+async function getRol(id) {
+	http.get('http://localhost:3003/api/user/'+id, (resp) => {
+		
+	let data = '';
+	// A chunk of data has been received.
+	resp.on('data', (chunk) => {	
+		data += chunk;
+	});
+
+ 	// The whole response has been received. Print out the result.
+  	resp.on('end', () => {
+		data=JSON.parse(data);
+		console.log("Tenemos la respuesta");
+		console.warn(data.rol);
+		return data.rol;
+	});
+
+	}).on("error", (err) => {
+		console.log("Error en la petición de rol");
+  		return null;
+	});
+}
+
 
 module.exports = SalesmanagerCtrl;

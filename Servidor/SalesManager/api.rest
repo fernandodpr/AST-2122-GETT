@@ -1,0 +1,31 @@
+###
+GET http://localhost:3002/api/products
+
+###
+GET http://localhost:3002/api/status
+
+###
+POST http://localhost:3002/api/order
+Content-Type: application/json
+
+{
+    "id_producto": "A",
+    "id_usuario": "A",
+    "cantidad": 3,
+    "comprador": "A",
+    "direccion": "A"
+}
+###
+GET http://localhost:3002/api/order
+###
+DELETE http://localhost:3003/api/user
+
+###
+DELETE http://localhost:3002/api/order/626bc338f06d24e51fa69205
+Content-Type: application/json
+
+{
+    "auth": "626ba8022a7fc04f5067b9c7"
+}
+###
+GET http://localhost:3003/api/user/626ba7ea2a7fc04f5067b9c4
