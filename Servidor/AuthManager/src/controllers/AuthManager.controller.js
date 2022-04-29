@@ -62,6 +62,7 @@ AuthManagerCtrl.getUser = async (req,res) =>{
 
     try{
         const usuario = await User.findOne({_id: req.params.id});
+        if(!usuario) throw error;
         res.send(usuario);
     }catch (error){
 	res.status(500)
