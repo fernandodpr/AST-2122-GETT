@@ -1,0 +1,28 @@
+###
+GET http://localhost:3003/api/status
+
+###
+GET http://localhost:3003/api/user
+
+###
+POST http://localhost:3003/api/user
+Content-Type: application/json
+
+{
+    "rol": "Administrador"
+}
+###
+POST http://localhost:3003/api/user
+Content-Type: application/json
+
+{
+    "rol": "Cliente",
+}
+
+###
+DELETE http://localhost:3003/api/user
+
+###
+DELETE http://localhost:3003/api/user/626ba7ea2a7fc04f5067b9c4
+###
+GET http://localhost:3003/api/user/626ba7ea2a7fc04f5067b9c4

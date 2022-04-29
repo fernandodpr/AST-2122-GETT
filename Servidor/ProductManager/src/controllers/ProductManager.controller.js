@@ -48,6 +48,7 @@ ProductManagerCtrl.getProducts = async (req, res) => {
         const products = await Product.find()
         res.json(products)
     }catch(error){
+  
         res.send({message: 'Server error'})
     }
 }
