@@ -50,8 +50,20 @@ SalesmanagerCtrl.getUser = async (req, res) => {
 SalesmanagerCtrl.newSale = async (req, res) => {
 	try{
 		const sale = new Sale(req.body)
-		await sale.save()
-		res.send({message: '200 - OK'})
+		const producto = await Product.findOne({_id: sale.id_producto})
+		let cant = sale.cantidad;
+		let cantMax = producto.stock;
+		if(cant <= cantMax){
+			producto.stock = producto.stock - cant;
+			producto.save()
+			console.log(producto.stock);
+			await sale.save()
+			res.send({message: '200 - OK'})
+		}
+		else{
+			res.status(500)
+			res.send({message: 'No hay suficientes productos en stock :('})
+		}
 	}catch(error){
 		res.status(500)
 		res.send({message: 'Server error'})
@@ -84,16 +96,20 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 		const auth = await getRol(req.get('Auth'));
 
 		var user=JSON.parse(auth);
-		
+
 		if(user.rol=='Administrador'){
 			res.status(401);
 			throw Error;
 
 		}else if (user.rol=="Cliente"){
-			if (!await Sale.findOneAndDelete({_id: req.params.id})) {
-				res.status(404); 
+			const compra = await Sale.findOneAndDelete({_id: req.params.id})
+			if (!compra) {
+				res.status(404);
 				throw Error;
 			}
+			const producto = await Product.findOne({_id: compra.id_producto});
+			producto.stock = producto.stock + compra.cantidad;
+			producto.save()
 			res.send({message: 'El pedido '+ req.params.id +' ha sido eliminado'});
 		} else{
 			res.status(500);
@@ -103,38 +119,32 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 		res.send({message: 'Server error'})
 	}
 
-	
+
 
 }
- function getRol(id) {
-	 return new Promise ((res,rej) => {
-		http.get('http://localhost:3003/api/user/'+id, (resp) => {
 
-			let data = '';
-			// A chunk of data has been received.
-			resp.on('data', (chunk) => {
-				data += chunk;
-			});
-		
-			 // The whole response has been received. Print out the result.
-			  resp.on('end', () => {
-				res(data);
-			});
-		
-			}).on("error", (err) => {
-				console.log("Error en la petición de rol");
-				rej(0);
-			});
+//Funciones
+async function getRol(id) {
+	http.get('http://localhost:3003/api/user/'+id, (resp) => {
 
+	let data = '';
+	// A chunk of data has been received.
+	resp.on('data', (chunk) => {
+		data += chunk;
+	});
 
+ 	// The whole response has been received. Print out the result.
+  	resp.on('end', () => {
+		data=JSON.parse(data);
+		console.log("Tenemos la respuesta");
+		console.warn(data.rol);
+		return data.rol;
+	});
 
-
-
-
-
-
-	 });
-	
+	}).on("error", (err) => {
+		console.log("Error en la petición de rol");
+  		return null;
+	});
 }
 
 
