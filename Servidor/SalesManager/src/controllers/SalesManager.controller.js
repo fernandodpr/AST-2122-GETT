@@ -33,6 +33,15 @@ SalesmanagerCtrl.getSaleID = async (req, res) => {
 	}
 }
 
+SalesmanagerCtrl.getUser = async (req, res) => {
+	try{
+		const usuario = await User.findOne({_id: req.params.id})
+		res.send(usuario)
+	}catch(error){
+		res.send({message: 'Server error'})
+	}
+}
+
 //Métodos POST
 SalesmanagerCtrl.newSale = async (req, res) => {
 	try{
