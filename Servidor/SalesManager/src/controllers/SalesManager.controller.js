@@ -38,7 +38,7 @@ SalesmanagerCtrl.getSaleID = async (req, res) => {
 
 SalesmanagerCtrl.getUser = async (req, res) => {
 	try {
-		const usuario = await User.findOne({ _id: req.params.id })
+		const usuario = await getRol(req.params.id)
 		res.send(usuario)
 	} catch (error) {
 		res.status(500)
@@ -66,8 +66,8 @@ SalesmanagerCtrl.newSale = async (req, res) => {
 		
 			var producto = await Product.findOne({ _id: sale.id_producto });
 			
-			if (!producto){
-				res.status(404);
+			if (!producto){		//no se llega a ejecutar
+				res.status(404);	//salta directamente al catch
 				throw Error;
 			}
 			let cant = sale.cantidad;
@@ -95,11 +95,28 @@ SalesmanagerCtrl.newSale = async (req, res) => {
 }
 
 SalesmanagerCtrl.updateSale = async (req, res) => {
+	res.status(500)
 	try {
-		await Sale.findOneAndUpdate({ _id: req.params.id }, req.body)
-		res.send({ message: '200 - OK' })
+		const auth = await getRol(req.get('Auth'));
+		
+		if(auth) var user = JSON.parse(auth);
+		console.log(user.rol);
+		if(user.rol == 'Administrador'){
+			res.status(401)
+			throw Error;
+		}
+		else if(user.rol == 'Cliente'){
+			const compra = await Sale.findOne({ _id: req.params.id })
+			compra.comprador = req.body.comprador;
+			compra.direccion = req.body.direccion;
+			await Sale.findOneAndUpdate({_id: req.params.id}, compra);
+			res.status(200)	
+			res.send({ message: '200 - OK' })
+		}
+		else{
+			throw Error;
+		}
 	} catch (error) {
-		res.status(500)
 		res.send({ message: 'Server error' })
 	}
 }
@@ -138,6 +155,7 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 			const producto = await Product.findOne({ _id: compra.id_producto });
 			producto.stock = producto.stock + compra.cantidad;
 			producto.save()
+			res.status(200)
 			res.send({ message: 'El pedido ' + req.params.id + ' ha sido eliminado' });
 		} else {
 			res.status(500);
