@@ -44,15 +44,9 @@ export class UsuarioComponent implements OnInit {
   addUser(form: NgForm){
     console.log(form.value);
     if(form.value.rol !="" && form.value.username !=""){
-<<<<<<< HEAD
       this.UserService.createUser(form.value).subscribe(
         (res: any) => {
           this.getUsers();
-=======
-      this.ProductService.createProduct(form.value).subscribe(
-        (res: any) => {
-          this.getProducts();
->>>>>>> 40b696a78eeb8a5b66fc57036a88725a467f0029
           form.reset();
           this.alerta = "Usuario añadido a la base de datos";
           this.showAlert();
@@ -76,11 +70,7 @@ export class UsuarioComponent implements OnInit {
     if(confirm('Este usuario se va a eliminar. ¿Confirma la operacion?')){
       this.UserService.deleteUser(form.value.id).subscribe(
         (res: any) => {
-<<<<<<< HEAD
           this.getUsers();
-=======
-          this.getProducts();
->>>>>>> 40b696a78eeb8a5b66fc57036a88725a467f0029
           form.reset();
           this.alerta = "El usuario se ha eliminado de la Base de Datos";
           this.showAlert();
