@@ -3,7 +3,7 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 import { NgForm } from "@angular/forms";
 import {User} from 'src/app/models/user';
 
@@ -15,19 +15,22 @@ import {User} from 'src/app/models/user';
 
 export class UsuarioComponent implements OnInit {
 
-  constructor(public ProductService: ProductService) { }
+  public visible = false;
+  alerta: string = "";
+
+  constructor(public UserService: UserService) { }
 
   filterGame= [];
 
   ngOnInit(): void {
-    this.getProducts();
+    this.getUsers();
   }
 
-  getProducts(){
-    this.ProductService.getProducts().subscribe(
+  getUsers(){
+    this.UserService.getUsers().subscribe(
       res => {
         console.log(res);
-        this.ProductService.usuarios = res;
+        this.UserService.usuarios = res;
       },
       err => console.log(err)
     )
@@ -39,27 +42,38 @@ export class UsuarioComponent implements OnInit {
 
   //agrega un usuario desde el formulario
   addUser(form: NgForm){
-      console.log(form.value);
-      if(form.value.rol !="" && form.value.username !=""){
-        this.ProductService.createProduct(form.value).subscribe(
-          (res: any) => {
-            this.getProducts();
-            form.reset();
-            console.log("Usuario añadido a la Base de Datos");
-            
-          },
-          (err: any) => console.log(err)
-        );
-      }
+    console.log(form.value);
+    if(form.value.rol !="" && form.value.username !=""){
+      this.UserService.createUser(form.value).subscribe(
+        (res: any) => {
+          this.getUsers();
+          form.reset();
+          this.alerta = "Usuario añadido a la base de datos";
+          this.showAlert();
+        },
+        (err: any) => console.log(err)
+      );
+    }
+  }
+
+  showAlert(){
+    this.visible = true;
+  }
+
+  hideAlert(){
+    this.alerta = "";
+    this.visible = false;
   }
 
   //Elimina usuario dado la id
   dropUser(form: NgForm){
     if(confirm('Este usuario se va a eliminar. ¿Confirma la operacion?')){
-      this.ProductService.deleteProduct(form.value.id).subscribe(
+      this.UserService.deleteUser(form.value.id).subscribe(
         (res: any) => {
-          this.getProducts();
-          console.log("El usuario se ha eliminado de la Base de Datos");
+          this.getUsers();
+          form.reset();
+          this.alerta = "El usuario se ha eliminado de la Base de Datos";
+          this.showAlert();
         },
         (err: any) => console.error(err)
       );

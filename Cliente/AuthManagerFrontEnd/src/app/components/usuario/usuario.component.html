@@ -12,21 +12,21 @@
             type="text"
             class="form-control mb-2"
             placeholder="Usuario"
-            [(ngModel)]="ProductService.selectedUser.username"
+            [(ngModel)]="UserService.selectedUser.username"
           />
           <p>Rol:</p>
           <input
             name="rol"
             type="radio"
             class="form-check-input"
-            value="administrador"
-            [(ngModel)]="ProductService.selectedUser.rol"> Administrador<br>
+            value="Administrador"
+            [(ngModel)]="UserService.selectedUser.rol"> Administrador<br>
           <input
             name="rol"
             type="radio"
-            class="form-check-input"
-            value="cliente"
-            [(ngModel)]="ProductService.selectedUser.rol"> Cliente<br>
+            class="form-check-input mb-2"
+            value="Cliente"
+            [(ngModel)]="UserService.selectedUser.rol"> Cliente<br>
 
           <div style="float:right">
             <button class="btn btn-primary mr-2">Guardar</button>
@@ -49,7 +49,7 @@
             type="text"
             class="form-control mb-2"
             placeholder="Identificador"
-            [(ngModel)]="ProductService.selectedUser._id"
+            [(ngModel)]="UserService.selectedUser._id"
           />
           <div style="float:right">
             <button class="btn btn-primary mr-2">Eliminar</button>
@@ -61,7 +61,7 @@
   </div>
 </div>
 
-<div class="alert alert-dismissible alert-info" >
-  <button type="button" class="btn-close" data-dismiss="alert"></button>
-  <strong>Well done!</strong> You successfully read <a href="#" class="alert-link">this important alert message</a>.
+<div *ngIf="visible" class="alert alert-dismissible alert-info mt-5">
+  {{alerta}}
+  <button type="button" class="btn-close" (click)="hideAlert()"></button>
 </div>
