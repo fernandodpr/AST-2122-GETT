@@ -3,7 +3,7 @@
 */
 
 import {Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Game} from '../models/game';
 
 @Injectable({
@@ -43,17 +43,31 @@ export class ProductService {
     return this.http.get<Game>(`${this.URL_API}/${id}`);
   }
 
-  createProduct(game: Game){
+  createProduct(game: Game,auth: string){
     delete game._id;
-    return this.http.post(this.URL_API, game);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Auth': auth
+      });
+      
+    return this.http.post(this.URL_API, game,{ headers,responseType: 'text'});
   }
 
-  updateProduct(game: Game){
-    return this.http.post(`${this.URL_API}/${game._id}`, game);
+  updateProduct(game: Game,auth: string){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Auth': auth
+      });
+    return this.http.post(`${this.URL_API}/${game._id}`, game,{ headers,responseType: 'text'});
   }
 
-  deleteProduct(_id: string){
-    return this.http.delete(`${this.URL_API}/${_id}`);
+  deleteProduct(_id: string,auth: string){
+    
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Auth': auth
+      });
+    return this.http.delete(`${this.URL_API}/${_id}`,{ headers,responseType: 'text'});
   }
 
   getCategory(categoryname : string){

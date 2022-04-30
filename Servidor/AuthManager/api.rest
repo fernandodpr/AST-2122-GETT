@@ -9,7 +9,8 @@ POST http://localhost:3003/api/user
 Content-Type: application/json
 
 {
-    "rol": "Administrador"
+    "rol": "Cliente",
+    "username": "Coco"
 }
 ###
 POST http://localhost:3003/api/user
