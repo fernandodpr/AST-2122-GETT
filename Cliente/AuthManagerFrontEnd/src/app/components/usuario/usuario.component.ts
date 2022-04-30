@@ -18,11 +18,7 @@ export class UsuarioComponent implements OnInit {
   public visible = false;
   alerta: string = "";
 
-<<<<<<< HEAD
   constructor(public UserService: UserService) { }
-=======
-  constructor(public ProductService: ProductService) { }
->>>>>>> 40b696a78eeb8a5b66fc57036a88725a467f0029
 
   filterGame= [];
 
