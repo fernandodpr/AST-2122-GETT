@@ -35,7 +35,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/product/624d5bf539aeed19bd1c4bdf
+DELETE http://localhost:3001/api/product/629aeed19bd1c4be1
 Auth: 626c14e228e322cb3f35e733
 ###
 GET http://localhost:3001/api/product/6246b4a36d7ef84829224c5e
