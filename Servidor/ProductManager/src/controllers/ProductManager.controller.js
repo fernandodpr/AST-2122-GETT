@@ -99,7 +99,7 @@ ProductManagerCtrl.createProduct = async (req, res) => {
             throw Error;
         }
     } catch (error) {
-        res.status(500)
+    
         res.send({ message: 'Server error' })
     }
 
