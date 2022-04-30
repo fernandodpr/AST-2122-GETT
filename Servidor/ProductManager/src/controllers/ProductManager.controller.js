@@ -32,7 +32,7 @@ ProductManagerCtrl.deleteProduct = async (req, res) => {
                     throw Error;
                 }
                 res.status(200);
-                res.send("El producto " + id+ 'ha sido eliminado.')
+                res.send("El producto " + id+ ' ha sido eliminado.')
             }else if (user.rol== 'Cliente'){
                 res.status(401);
 			    res.send('El ususario no tiene los permisos necesarios.');
