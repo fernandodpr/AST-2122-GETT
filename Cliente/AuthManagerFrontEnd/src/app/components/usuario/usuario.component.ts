@@ -51,7 +51,11 @@ export class UsuarioComponent implements OnInit {
           this.alerta = "Usuario añadido a la base de datos";
           this.showAlert();
         },
-        (err: any) => console.log(err)
+        (err: any) => {
+          console.log(err);
+          this.alerta = "Ha ocurrido un error";
+          this.showAlert();
+        }
       );
     }
   }
