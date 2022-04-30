@@ -3,7 +3,7 @@
 */
 
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { ProductService } from 'src/app/services/product.service';
 import { NgForm } from "@angular/forms";
 import {User} from 'src/app/models/user';
 
@@ -18,19 +18,19 @@ export class UsuarioComponent implements OnInit {
   public visible = false;
   alerta: string = "";
 
-  constructor(public UserService: UserService) { }
+  constructor(public ProductService: ProductService) { }
 
   filterGame= [];
 
   ngOnInit(): void {
-    this.getUsers();
+    this.getProducts();
   }
 
-  getUsers(){
-    this.UserService.getUsers().subscribe(
+  getProducts(){
+    this.ProductService.getProducts().subscribe(
       res => {
         console.log(res);
-        this.UserService.usuarios = res;
+        this.ProductService.usuarios = res;
       },
       err => console.log(err)
     )
@@ -44,9 +44,9 @@ export class UsuarioComponent implements OnInit {
   addUser(form: NgForm){
     console.log(form.value);
     if(form.value.rol !="" && form.value.username !=""){
-      this.UserService.createUser(form.value).subscribe(
+      this.ProductService.createProduct(form.value).subscribe(
         (res: any) => {
-          this.getUsers();
+          this.getProducts();
           form.reset();
           this.alerta = "Usuario añadido a la base de datos";
           this.showAlert();
@@ -68,9 +68,9 @@ export class UsuarioComponent implements OnInit {
   //Elimina usuario dado la id
   dropUser(form: NgForm){
     if(confirm('Este usuario se va a eliminar. ¿Confirma la operacion?')){
-      this.UserService.deleteUser(form.value.id).subscribe(
+      this.ProductService.deleteProduct(form.value.id).subscribe(
         (res: any) => {
-          this.getUsers();
+          this.getProducts();
           form.reset();
           this.alerta = "El usuario se ha eliminado de la Base de Datos";
           this.showAlert();

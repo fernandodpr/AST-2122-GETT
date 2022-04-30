@@ -10,7 +10,7 @@ import {User} from '../models/user';
   providedIn: 'root'
 })
 
-export class UserService {
+export class ProductService {
   constructor(private http: HttpClient){}
   URL_API = 'http://localhost:3003/api/user';
 
@@ -25,20 +25,20 @@ export class UserService {
   sumidero: string = "";
   sumidero2: string = "";
 
-  getUsers(){
+  getProducts(){
     return this.http.get<User[]>(this.URL_API);
   }
 
-  getUser(id: string){
+  getProduct(id: string){
     return this.http.get<User>(`${this.URL_API}/${id}`);
   }
 
-  createUser(user: User){
-    delete user._id;
-    return this.http.post(this.URL_API, user);
+  createProduct(game: User){
+    delete game._id;
+    return this.http.post(this.URL_API, game);
   }
 
-  deleteUser(_id: string){
+  deleteProduct(_id: string){
     return this.http.delete(`${this.URL_API}/${_id}`);
   }
 }
