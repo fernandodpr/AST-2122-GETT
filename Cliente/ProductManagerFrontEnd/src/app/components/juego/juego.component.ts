@@ -40,25 +40,29 @@ export class JuegoComponent implements OnInit {
 
   //agrega un juego desde el formulario
   addGame(form: NgForm){
+    var auth = (<HTMLInputElement>document.getElementById("iduser")).value;
+
     if(form.value._id){
-      this.ProductService.updateProduct(form.value).subscribe(
+      this.ProductService.updateProduct(form.value,auth).subscribe(
         (res) => {
           this.getProducts();
           form.reset();
+          alert(res);
           console.log("La informacion del producto ha sido actualizada");
         },
-        (err) => console.error(err)
+        (err) => alert(err.error)
       );
     }else {
       console.log(form.value);
       if(form.value.nombre !="" && form.value.categoria !="" && form.value.estudio !="" && form.value.plataforma !="" && form.value.img !=""){
-        this.ProductService.createProduct(form.value).subscribe(
+        this.ProductService.createProduct(form.value,auth).subscribe(
           (res: any) => {
             this.getProducts();
             form.reset();
+            alert(res);
             console.log("Producto añadido a la Base de Datos");
           },
-          (err: any) => console.log(err)
+          (err: any) => alert(err.error)
         );
       }
     }
@@ -67,18 +71,26 @@ export class JuegoComponent implements OnInit {
   //Elimina juego dado la id
   deleteGame(id: string){
     if(confirm('Este producto se va eliminar. ¿Confirma la operacion?')){
-      this.ProductService.deleteProduct(id).subscribe(
+      var auth = (<HTMLInputElement>document.getElementById("iduser")).value;
+      
+      this.ProductService.deleteProduct(id,auth).subscribe(
         (res) => {
           this.getProducts();
-          console.log("El producto se ha eliminado de la Base de Datos");
+          alert(res);
+          
         },
-        (err) => console.error(err)
+        (err) =>{
+          console.error(err);
+          alert(err.error);
+        }
       );
     }
   }
 
   //Editar los datos del juego desde el formulario
   editGame(game: Game){
+          var auth = (<HTMLInputElement>document.getElementById("iduser")).value;
+
     console.log("Edicion del juego");
     if(game._id){
       console.log(this.ProductService.getProduct(game._id));

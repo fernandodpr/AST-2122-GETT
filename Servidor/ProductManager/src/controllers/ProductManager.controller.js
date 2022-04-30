@@ -24,7 +24,7 @@ ProductManagerCtrl.deleteProduct = async (req, res) => {
             if (auth) var user = JSON.parse(auth);
     
             res.status(500);
-    
+            var id = req.params.id;
             if (user.rol == 'Administrador') {
                 if (!await Product.findOneAndDelete({ _id: req.params.id })){
                     res.status(404);
@@ -32,7 +32,7 @@ ProductManagerCtrl.deleteProduct = async (req, res) => {
                     throw Error;
                 }
                 res.status(200);
-                res.send({ message: '200 - OK' })
+                res.send("El producto " + id+ 'ha sido eliminado.')
             }else if (user.rol== 'Cliente'){
                 res.status(401);
 			    res.send('El ususario no tiene los permisos necesarios.');
