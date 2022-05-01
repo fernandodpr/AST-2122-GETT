@@ -44,7 +44,7 @@ AuthManagerCtrl.deleteAll = async (req,res) =>{
 }
 AuthManagerCtrl.deleteID = async (req,res) =>{
     //Eliminar un usuario por ID
-
+    res.status(500)
     try{
         var resultado = await User.findOneAndDelete({_id: req.params.id});
         if (!resultado){
@@ -55,8 +55,8 @@ AuthManagerCtrl.deleteID = async (req,res) =>{
 
         res.send("El usuario se ha eliminado de la Base de Datos")
     }catch (error){
-	      res.status(500)
-        res.send("No se ha podido eliminar el usuario");
+	      
+        
     }
 };
 
