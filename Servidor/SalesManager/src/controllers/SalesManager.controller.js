@@ -37,9 +37,15 @@ SalesmanagerCtrl.getSaleID = async (req, res) => {
 }
 
 SalesmanagerCtrl.getUser = async (req, res) => {
+
 	try {
-		const usuario = await getRol(req.params.id)
-		res.send(usuario)
+		const pedidos = await Sale.find({id_usuario:req.params.id});
+		console.log(pedidos);
+		if(pedidos.length>0) {res.send(pedidos);}
+		else{
+			res.status(404);
+			res.send("No se ha encontrado ningun pedido para ese cliente")
+		}
 	} catch (error) {
 		res.status(500)
 		res.send({ message: 'Server error' })

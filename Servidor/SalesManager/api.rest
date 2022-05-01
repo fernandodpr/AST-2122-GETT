@@ -1,8 +1,12 @@
 ###
 GET http://localhost:3002/api/products
+###
+GET http://localhost:3002/api/order
 
 ###
 GET http://localhost:3002/api/status
+###
+GET http://localhost:3002/api/user/0
 
 ###
 #Post por cliente
