@@ -11,7 +11,7 @@ ProductManagerCtrl.getProduct = async (req, res) => {
         res.send(producto);
     } catch (error) {
         res.status(500)
-        res.send({ message: 'Server error' })
+        res.send('Server error')
     }
 
 }
@@ -20,9 +20,9 @@ ProductManagerCtrl.deleteProduct = async (req, res) => {
         res.status(500);
         try {
             const auth = await getRol(req.get('Auth'));
-        
+
             if (auth) var user = JSON.parse(auth);
-    
+
             res.status(500);
             var id = req.params.id;
             if (user.rol == 'Administrador') {
@@ -42,27 +42,27 @@ ProductManagerCtrl.deleteProduct = async (req, res) => {
                 throw Error;
             }
     } catch (error) {
-        
+
     }
 }
 ProductManagerCtrl.editProduct = async (req, res) => {
     res.status(500);
     try {
         const auth = await getRol(req.get('Auth'));
-	
+
 		if (auth) var user = JSON.parse(auth);
 
 		res.status(500);
 
 		if (user.rol == 'Administrador') {
-            
+
             if (!await Product.findOneAndUpdate({ _id: req.params.id }, req.body)){
                 res.status(404);
                 res.send('No ha sido posible encontrar el producto');
                 throw Error;
             }
             res.status(200);
-            res.send({ message: 'Producto editado con éxito' })
+            res.send('Producto editado con éxito');
         }else if(user.rol == "Cliente"){
 			res.status(401);
 			res.send('El ususario no tiene los permisos necesarios.');
@@ -73,7 +73,7 @@ ProductManagerCtrl.editProduct = async (req, res) => {
 			throw Error;
         }
     } catch (error) {
-        
+
     }
 
 }
@@ -90,7 +90,7 @@ ProductManagerCtrl.createProduct = async (req, res) => {
             const newProduct = new Product(req.body)
             await newProduct.save()
             res.status(200);
-            res.send({ message: 'Creado producto con id ' + newProduct._id });
+            res.send('Creado producto con id ' + newProduct._id);
         } else if (user.rol == "Cliente") {
             res.status(401);
             throw Error;
@@ -99,8 +99,8 @@ ProductManagerCtrl.createProduct = async (req, res) => {
             throw Error;
         }
     } catch (error) {
-    
-        res.send({ message: 'Server error' })
+
+        res.send('No se ha podido crear el producto')
     }
 
 }
@@ -110,7 +110,7 @@ ProductManagerCtrl.getProducts = async (req, res) => {
         res.json(products)
     } catch (error) {
         res.status(500)
-        res.send({ message: 'Server error' })
+        res.send('Server error')
     }
 }
 ProductManagerCtrl.deleteProducts = async (req, res) => {
@@ -119,7 +119,7 @@ ProductManagerCtrl.deleteProducts = async (req, res) => {
         res.send('OK');
     } catch (error) {
         res.status(500)
-        res.send({ message: 'Server error' })
+        res.send('Server error')
     }
 }
 
@@ -129,7 +129,7 @@ ProductManagerCtrl.getCategory = async (req, res) => {
         res.send(producto);
     } catch (error) {
         res.status(500)
-        res.send({ message: 'Server error' })
+        res.send('Server error')
     }
 }
 
