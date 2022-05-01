@@ -12,7 +12,7 @@ SalesmanagerCtrl.getProducts = async (req, res) => {
 		res.json(products)
 	} catch (error) {
 		res.status(500)
-		res.send({ message: 'Server error' })
+		res.send('Server error')
 	}
 }
 
@@ -22,7 +22,7 @@ SalesmanagerCtrl.getSales = async (req, res) => {
 		res.json(sales)
 	} catch (error) {
 		res.status(500)
-		res.send({ message: 'Server error' })
+		res.send('Server error')
 	}
 }
 
@@ -32,7 +32,7 @@ SalesmanagerCtrl.getSaleID = async (req, res) => {
 		res.send(venta)
 	} catch (error) {
 		res.status(500)
-		res.send({ message: 'Server error' })
+		res.send('Server error')
 	}
 }
 
@@ -48,7 +48,7 @@ SalesmanagerCtrl.getUser = async (req, res) => {
 		}
 	} catch (error) {
 		res.status(500)
-		res.send({ message: 'Server error' })
+		res.send('Server error' )
 	}
 }
 
@@ -85,11 +85,11 @@ SalesmanagerCtrl.newSale = async (req, res) => {
 				
 				await sale.save();
 				res.status(200)
-				res.send({ message: 'Se ha realizado la compra: '+ sale._id })
+				res.send('Se ha realizado la compra: '+ sale._id )
 			}
 			else {
 				
-				res.send({ message: 'No hay suficientes productos en stock :(' })
+				res.send('No hay suficientes productos en stock :(')
 			}
 		}else {
 			res.status(500);
@@ -117,13 +117,13 @@ SalesmanagerCtrl.updateSale = async (req, res) => {
 			compra.direccion = req.body.direccion;
 			await Sale.findOneAndUpdate({_id: req.params.id}, compra);
 			res.status(200)	
-			res.send({ message: '200 - OK' })
+			res.send('200 - OK' )
 		}
 		else{
 			throw Error;
 		}
 	} catch (error) {
-		res.send({ message: 'Server error' })
+		res.send('Server error')
 	}
 }
 
@@ -131,10 +131,10 @@ SalesmanagerCtrl.updateSale = async (req, res) => {
 SalesmanagerCtrl.deleteAllSales = async (req, res) => {
 	try {
 		await Sale.deleteMany();
-		res.send({ message: '200 -OK' })
+		res.send('200 -OK' )
 	} catch (error) {
 		res.status(500)
-		res.send({ message: 'Server error' })
+		res.send('Server error' )
 	}
 }
 
@@ -164,7 +164,7 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 			producto.stock = producto.stock + compra.cantidad;
 			producto.save()
 			res.status(200)
-			res.send({ message: 'El pedido ' + req.params.id + ' ha sido eliminado' });
+			res.send('El pedido ' + req.params.id + ' ha sido eliminado');
 		} else {
 			res.status(500);
 			res.send("Error generico");
