@@ -89,6 +89,7 @@ export class VentaComponent implements OnInit {
 
         },
         (err) =>{
+          
           console.log(err);
           alert(err.error);
         }
@@ -120,7 +121,11 @@ export class VentaComponent implements OnInit {
         res=>{
           this.SaleconnnectService.sales=res;
         },
-        err=> console.log(err)
+        err=> {
+          console.log(err);
+          console.log('Se ha producido un error');
+          alert(err.error);
+        }
       );
     }else {
 
