@@ -57,9 +57,6 @@ AuthManagerCtrl.deleteID = async (req,res) =>{
       if(error.name === 'CastError'){
         res.status(404);
         res.send("El usuario no existe en la Base de Datos");
-      }else{
-          res.status(500);
-          res.send("Se ha prducido un error genérico");
       }
     }
 };
