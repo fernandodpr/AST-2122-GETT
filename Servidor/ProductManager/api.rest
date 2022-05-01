@@ -2,7 +2,7 @@
 GET http://localhost:3001/api/product
 ###POST POR CLIENTE
 POST http://localhost:3001/api/product
-Auth: 626d622ceb82af9c6d1edda1
+Auth: 626ed01c55aa4c124d3125a0
 Content-Type: application/json
 
 {
@@ -38,20 +38,24 @@ Content-Type: application/json
     "plataforma":  "wii U",
     "img":  "https://m.media-amazon.com/images/I/71usPUo4uWL._AC_SX425_.jpg"
 }
-###
-DELETE http://localhost:3001/api/product
+
 ###
 GET http://localhost:3001/api/category/test
 ###
 GET http://localhost:3001/api/status
 
 
+######################################
+#####################################
+#####################################
+####################################
 
-
-
+###
+DELETE http://localhost:3001/api/product
 
 ###
 POST http://localhost:3001/api/product
+Auth: 626ed01c55aa4c124d3125a0
 Content-Type: application/json
 
 {
@@ -67,6 +71,7 @@ Content-Type: application/json
 }
 ###
 POST http://localhost:3001/api/product
+Auth: 626ed01c55aa4c124d3125a0
 Content-Type: application/json
 
 {
@@ -82,6 +87,7 @@ Content-Type: application/json
 }
 ###
 POST http://localhost:3001/api/product
+Auth: 626ed01c55aa4c124d3125a0
 Content-Type: application/json
 
 {
@@ -97,6 +103,7 @@ Content-Type: application/json
 }
 ###
 POST http://localhost:3001/api/product
+Auth: 626ed01c55aa4c124d3125a0
 Content-Type: application/json
 
 {
