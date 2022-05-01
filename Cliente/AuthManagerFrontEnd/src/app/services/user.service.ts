@@ -3,7 +3,7 @@
 */
 
 import {Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../models/user';
 
 @Injectable({
@@ -35,10 +35,17 @@ export class UserService {
 
   createUser(user: User){
     delete user._id;
-    return this.http.post(this.URL_API, user);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(this.URL_API, user,{ headers,responseType: 'text'});
   }
 
   deleteUser(_id: string){
-    return this.http.delete(`${this.URL_API}/${_id}`);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.delete(`${this.URL_API}/${_id}`,{ headers,responseType: 'text'});
   }
 }

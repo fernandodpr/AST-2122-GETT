@@ -45,15 +45,15 @@ export class UsuarioComponent implements OnInit {
     console.log(form.value);
     if(form.value.rol !="" && form.value.username !=""){
       this.UserService.createUser(form.value).subscribe(
-        (res: any) => {
+        (res:any) => {
           this.getUsers();
           form.reset();
-          this.alerta = "Usuario añadido a la base de datos";
+          this.alerta = res;
           this.showAlert();
         },
         (err: any) => {
           console.log(err);
-          this.alerta = "Ha ocurrido un error";
+          this.alerta = err.error;
           this.showAlert();
         }
       );
@@ -76,10 +76,14 @@ export class UsuarioComponent implements OnInit {
         (res: any) => {
           this.getUsers();
           form.reset();
-          this.alerta = "El usuario se ha eliminado de la Base de Datos";
+          this.alerta = res;
           this.showAlert();
         },
-        (err: any) => console.error(err)
+        (err: any) => {
+          console.log(err);
+          this.alerta = err.error;
+          this.showAlert();
+        }
       );
     }
   }

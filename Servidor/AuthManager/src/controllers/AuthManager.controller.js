@@ -19,14 +19,14 @@ AuthManagerCtrl.create = async (req,res) =>{
     //Crear nuevo cliente
 
     try{
-        
+
         const newUser = new User(req.body)
         await newUser.save()
-        res.send({message: 'Todo bien'});
-        
+        res.send('Creado usuario con id ' + newUser._id);
+
     }catch (error){
 	    res.status(500)
-        res.send({message: 'Server Error'});
+        res.send('No se ha podido crear el usuario');
     }
 };
 AuthManagerCtrl.deleteAll = async (req,res) =>{
@@ -46,14 +46,17 @@ AuthManagerCtrl.deleteID = async (req,res) =>{
     //Eliminar un usuario por ID
 
     try{
-        if ( ! await User.findOneAndDelete({_id: req.params.id})){
+        var resultado = await User.findOneAndDelete({_id: req.params.id});
+        if (!resultado){
+            res.status(404);
+            res.send("El usuario no existe en la Base de Datos");
             throw error;
         }
-       
-        res.send("Makina bro")
+
+        res.send("El usuario se ha eliminado de la Base de Datos")
     }catch (error){
-	res.status(500)
-        res.send({message: 'Server Error'});
+	      res.status(500)
+        res.send("No se ha podido eliminar el usuario");
     }
 };
 
