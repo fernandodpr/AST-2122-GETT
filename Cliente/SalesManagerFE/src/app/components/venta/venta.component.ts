@@ -71,7 +71,7 @@ export class VentaComponent implements OnInit {
           },
           (err: any) => alert(err.error)
         );
-      }
+      }else console.log("No has introducido los parametros suficientes");
     }
   }
 

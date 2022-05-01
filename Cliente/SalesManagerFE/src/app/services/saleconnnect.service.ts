@@ -71,4 +71,5 @@ export class SaleconnnectService {
     return this.http.delete(`http://localhost:3002/api/order/${_id}`,{ headers,responseType: 'text'});
   
   }
+
 }
