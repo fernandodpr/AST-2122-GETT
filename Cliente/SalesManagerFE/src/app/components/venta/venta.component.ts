@@ -30,7 +30,7 @@ export class VentaComponent implements OnInit {
   }
 
   getOrders() {
-    
+
     this.SaleconnnectService.getSales().subscribe(
       res => {
         console.log(res);
@@ -71,22 +71,22 @@ export class VentaComponent implements OnInit {
           },
           (err: any) => alert(err.error)
         );
-      }else console.log("No has introducido los parametros suficientes");
+      }
     }
   }
 
   deleteOrder(id: string){
-   
+
     if(confirm('Este pedido se va eliminar. ¿Confirma la operacion?')){
       var auth = (<HTMLInputElement>document.getElementById("idusersales")).value;
-      
+
       this.SaleconnnectService.deleteOrder(id,auth).subscribe(
         (res) => {
           this.getProducts();
           this.getOrders();
           console.log(res);
           alert(res);
-          
+
         },
         (err) =>{
           console.log(err);
@@ -111,4 +111,19 @@ export class VentaComponent implements OnInit {
     }
   }
 
+  aplyFilter(filters : NgForm){
+    console.log("Aplicando filtros");
+    //console.log(filters);
+    console.log(filters.form.value.filterId);
+    if(filters.form.value.filterId){
+      this.SaleconnnectService.getSale(filters.form.value.filterId).subscribe(
+        res=>{
+          this.SaleconnnectService.sales=[res];
+        },
+        err=> console.log(err)
+      );
+    }else {
+
+    }
+  }
 }
