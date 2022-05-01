@@ -4,6 +4,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
+import { SaleconnnectService } from 'src/app/services/saleconnnect.service';
 import { NgForm } from "@angular/forms";
 import {Game} from 'src/app/models/game';
 
@@ -128,9 +129,8 @@ export class JuegoComponent implements OnInit {
 
     }
   }
-  addtocart(id: string){
-    var prod = <HTMLInputElement>document.getElementById("addtocart");
-    prod.value=id;
-
+  readid(parametro:string){
+    alert(parametro);
   }
+ 
 }
