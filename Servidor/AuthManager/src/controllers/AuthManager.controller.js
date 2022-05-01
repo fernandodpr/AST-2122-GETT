@@ -44,7 +44,7 @@ AuthManagerCtrl.deleteAll = async (req,res) =>{
 }
 AuthManagerCtrl.deleteID = async (req,res) =>{
     //Eliminar un usuario por ID
-    res.status(500)
+
     try{
         var resultado = await User.findOneAndDelete({_id: req.params.id});
         if (!resultado){
@@ -52,11 +52,12 @@ AuthManagerCtrl.deleteID = async (req,res) =>{
             res.send("El usuario no existe en la Base de Datos");
             throw error;
         }
-
         res.send("El usuario se ha eliminado de la Base de Datos")
     }catch (error){
-	      
-        
+      if(error.name === 'CastError'){
+        res.status(404);
+        res.send("El usuario no existe en la Base de Datos");
+      }
     }
 };
 
