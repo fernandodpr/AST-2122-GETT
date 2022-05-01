@@ -66,7 +66,7 @@
         <form #filterForm="ngForm" style="display: inline-block" (ngSubmit)="aplyFilter(filterForm)">
           <input type="text" class=" form-control"  [(ngModel)]="SaleconnnectService.sumidero" style="display: inline-block;width: 40%; margin-right: 0.5em;" name="filterId" placeholder="Get por ID (con API)" />
           <button class="btn btn-info" style="display: inline-block;width: 20%;margin-right: 0.7em;" >Filtrar</button>
-          <button type="button" class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar</button>
+          <button type="button" class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getOrders();resetForm(filterForm)">Limpiar</button>
         </form>
 
 

@@ -42,7 +42,7 @@ export class SaleconnnectService {
   }
 
   getUser(id:string){
-    return this.http.get<Sale>(`http://localhost:3002/api/user/${id}`);
+    return this.http.get<Sale[]>(`http://localhost:3002/api/user/${id}`);
   }
 
   createOrder(data: Sale, auth: string){
