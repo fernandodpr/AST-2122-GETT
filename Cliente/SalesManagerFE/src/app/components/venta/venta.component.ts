@@ -116,7 +116,7 @@ export class VentaComponent implements OnInit {
     //console.log(filters);
     console.log(filters.form.value.filterId);
     if(filters.form.value.filterId){
-      this.SaleconnnectService.getSale(filters.form.value.filterId).subscribe(
+      this.SaleconnnectService.getUser(filters.form.value.filterId).subscribe(
         res=>{
           this.SaleconnnectService.sales=[res];
         },

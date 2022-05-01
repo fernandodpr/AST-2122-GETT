@@ -41,15 +41,19 @@ export class SaleconnnectService {
     return this.http.get<Sale>(`http://localhost:3002/api/order/${id}`);
   }
 
+  getUser(id:string){
+    return this.http.get<Sale>(`http://localhost:3002/api/user/${id}`);
+  }
+
   createOrder(data: Sale, auth: string){
     delete data._id;
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Auth': auth
       });
-      
+
     return this.http.post('http://localhost:3002/api/order', data,{ headers,responseType: 'text'});
-  
+
   }
 
   updateOrder(data: Sale, auth: string){
@@ -63,13 +67,13 @@ export class SaleconnnectService {
   }
 
   deleteOrder(_id:string,auth:string){
-  
+
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Auth': auth
       });
     return this.http.delete(`http://localhost:3002/api/order/${_id}`,{ headers,responseType: 'text'});
-  
+
   }
 
 }
