@@ -1,0 +1,148 @@
+<div class="row">
+  <input placeholder="Introducir id de usuario" class="form-control mb-2" type="text" id="iduser" name="iduser" #iduser>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h1>FORMULARIO</h1>
+        <form #gameForm="ngForm" (ngSubmit)="addGame(gameForm)">
+          <input type="hidden" name="_id" [(ngModel)] = "ProductService.selectedGame._id">
+          <div class="form-group">
+          <!---  <input name="nombre" type="text" class="form-control" placeholder="Nombre del juego" [(ngModel)]="ProductService.selectedGame.nombre">-->
+          </div>
+          <p>Nombre:</p>
+          <input
+            name="nombre"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Nombre"
+            [(ngModel)]="ProductService.selectedGame.nombre"
+          />
+          <p>Precio:</p>
+          <input
+            name="precio"
+            type="number"
+            class="form-control mb-2"
+            placeholder="Precio"
+            [(ngModel)]="ProductService.selectedGame.precio"
+          />
+          <p>Stock:</p>
+          <input
+            name="stock"
+            type="number"
+            class="form-control mb-2"
+            placeholder="Stock"
+            [(ngModel)]="ProductService.selectedGame.stock"
+          />
+          <p>Categoria:</p>
+          <input
+            name="categoria"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Categoría"
+            [(ngModel)]="ProductService.selectedGame.categoria"
+          />
+          <p>Estudio:</p>
+          <input
+            name="estudio"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Estudio"
+            [(ngModel)]="ProductService.selectedGame.estudio"
+          />
+          <p>Fecha lanzamiento:</p>
+          <input
+            name="lanzamiento"
+            type="date"
+            class="form-control mb-2"
+            placeholder="Lanzamiento"
+            [(ngModel)]="ProductService.selectedGame.lanzamiento"
+          />
+          <p>PEGI:</p>
+          <input
+            name="pegi"
+            type="number"
+            class="form-control mb-2"
+            placeholder="PEGI"
+            [(ngModel)]="ProductService.selectedGame.pegi"
+          />
+          <p>Plataforma:</p>
+          <input
+            name="plataforma"
+            type="text"
+            class="form-control mb-2"
+            placeholder="Plataformas"
+            [(ngModel)]="ProductService.selectedGame.plataforma"
+          />
+          <p>URL a imagen:</p>
+          <input
+            name="img"
+            type="url"
+            class="form-control mb-2"
+            placeholder="URL de la Imagen"
+            [(ngModel)]="ProductService.selectedGame.img"
+          />
+          <div style="float:right">
+            <button class="btn btn-primary mr-2">Guardar</button>
+            <button type="button" class="btn btn-secondary" style="margin-left: 0.5em;" (click)="resetForm(gameForm)">Limpiar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card-body">
+      <h1>Data</h1>
+      <div class="mb-2 " style="display: inline-block;">
+        <p>Filtros locales de angular:</p>
+        <input type="text" class="form-control mb-2" style="display: inline-block; width: 27%;" name="filterGame" placeholder="Buscar por nombre (sin API)" [(ngModel)]="filterGame"/>
+        <p>Filtros por llamada API:</p>
+        <form #filterForm="ngForm" style="display: inline-block" (ngSubmit)="aplyFilter(filterForm)">
+          <input type="text" class=" form-control"  [(ngModel)]="ProductService.sumidero" style="display: inline-block;width: 40%; margin-right: 0.5em;" name="filterId" placeholder="Get por ID (con API)" />
+          <input type="text" class="form-control"  [(ngModel)]="ProductService.sumidero2" style="display: inline-block;width: 40%; margin-right: 0.5em;" name="filterCat" placeholder="Get por categoria (con API)" />
+          <button class="btn btn-info" style="display: inline-block;width: 20%;margin-right: 0.7em;" >Filtrar</button>
+        </form>
+        <button class="btn btn-info" style="display: inline-block;width: 17%;" (click)="getProducts();resetForm(filterForm)">Limpiar</button>
+      </div >
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Acciones</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Categorías</th>
+            <th scope="col">Estudio</th>
+            <th scope="col">Lanzamiento</th>
+            <th scope="col">PEGI</th>
+            <th scope="col">Plataforma</th>
+            <th scope="col">Imagen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let juego of ProductService.juegos | filter:filterGame" >
+            <td>
+              <button type="button" (click)="editGame(juego)" class="btn btn-info" style="margin-bottom: 0.2em;">
+                <i class="material-icons" >edit</i>
+              </button>
+              <button type="button" class="btn btn-danger" (click)="deleteGame(juego._id)">
+                <i class="material-icons">delete</i>
+              </button>
+              <button type="button" class="btn btn-danger" (click)="addtocart(juego._id)">
+                <i class="material-icons">add</i>
+              </button>
+            </td>
+            <td>{{juego.nombre}}</td>
+            <td>{{juego.precio}}</td>
+            <td>{{juego.stock}}</td>
+            <td>{{juego.categoria}}</td>
+            <td>{{juego.estudio}}</td>
+            <td>{{juego.lanzamiento}}</td>
+            <td>{{juego.pegi}}</td>
+            <td>{{juego.plataforma}}</td>
+            <td><img src={{juego.img}} alt="No data" height="90px"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+
+<div class="row">
+    <input placeholder="Introducir id de usuario" class="form-control mb-2" type="text" id="idusersales" name="iduser" #iduser>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h1>Crear un nuevo pedido</h1>
+          <form #orderForm="ngForm" (ngSubmit)="addOrder(orderForm)">
+            <input type="hidden" name="_id" [(ngModel)] = "SaleconnnectService.selectedSale._id">
+            <div class="form-group">
+            <!---  <input name="nombre" type="text" class="form-control" placeholder="Nombre del juego" [(ngModel)]="ProductService.selectedGame.nombre">-->
+            </div>
+            <p>id_usuario:</p>
+            <input
+              name="id_usuario"
+              type="text"
+              class="form-control mb-2"
+              placeholder="id_usuario"
+              [(ngModel)]="SaleconnnectService.selectedSale.id_usuario"
+            />
+            <p>id_producto:</p>
+            <input
+              name="id_producto"
+              id="addtocart"
+              type="text"
+              class="form-control mb-2"
+              placeholder="id_producto"
+              [(ngModel)]="SaleconnnectService.selectedSale.id_producto"
+            />
+            <p>cantidad:</p>
+            <input
+              name="cantidad"
+              type="number"
+              class="form-control mb-2"
+              placeholder="cantidad"
+              [(ngModel)]="SaleconnnectService.selectedSale.cantidad"
+            />
+            <p>comprador:</p>
+            <input
+              name="comprador"
+              type="text"
+              class="form-control mb-2"
+              placeholder="comprador"
+              [(ngModel)]="SaleconnnectService.selectedSale.comprador"
+            />
+            <p>direccion:</p>
+            <input
+              name="direccion"
+              type="text"
+              class="form-control mb-2"
+              placeholder="direccion"
+              [(ngModel)]="SaleconnnectService.selectedSale.direccion"
+            />
+            <div style="float:right">
+              <button class="btn btn-primary mr-2">Guardar</button>
+              <button type="button" class="btn btn-secondary" style="margin-left: 0.5em;" (click)="resetForm(orderForm)">Limpiar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h1>Pedidos</h1>
+        
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th scope="col">Acciones</th>
+              <th scope="col">Id_usuario</th>
+              <th scope="col">ID_producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Comprador</th>
+              <th scope="col">Dirección</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of SaleconnnectService.sales" >
+              <td>
+                <button type="button" (click)="editOrder(order)" class="btn btn-info" style="margin-bottom: 0.2em;">
+                  <i class="material-icons" >edit</i>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="deleteOrder(order._id!)">
+                  <i class="material-icons">delete</i>
+                </button>
+              </td>
+              <td>{{order.id_usuario}}</td>
+              <td>{{order.id_producto}}</td>
+              <td>{{order.cantidad}}</td>
+              <td>{{order.comprador}}</td>
+              <td>{{order.direccion}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

@@ -142,14 +142,16 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 
 		if (user.rol == 'Administrador') {
 			res.status(401);
+			res.send("El usuario no tiene permisos");
 			throw Error;
 
 		} else if (user.rol == "Cliente") {
-
+			
 			const compra = await Sale.findOneAndDelete({ _id: req.params.id })
 
 			if (!compra) {
 				res.status(404);
+				res.send("El pedido no existe");
 				throw Error;
 			}
 			const producto = await Product.findOne({ _id: compra.id_producto });
@@ -159,11 +161,12 @@ SalesmanagerCtrl.deleteSale = async (req, res) => {
 			res.send({ message: 'El pedido ' + req.params.id + ' ha sido eliminado' });
 		} else {
 			res.status(500);
+			res.send("Error generico");
 			throw Error;
 		}
 	} catch (error) {
 
-		res.send({ message: 'Server error' })
+		
 	}
 
 
