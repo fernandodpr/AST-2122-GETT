@@ -16,3 +16,7 @@ Para el desarrollo de esta práctica se han empleado las siguientes tecnologías
 - Node.js
 - MongoDB
 - Angular.js
+# Autoría
+- Darío González Ferreiro [@MaxDieri](https://github.com/MaxDieri)
+- Alba Vazquez [@acallvazq](https://github.com/acallvazq)
+- Fernando de Peroy Rodríguez [@fernandodpr](https://github.com/fernandodpr/)
